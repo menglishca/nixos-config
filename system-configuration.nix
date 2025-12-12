@@ -26,6 +26,7 @@
     firewall = {
       allowedTCPPorts = [ ]; # don't globally allow 22
 
+      #Only allow SSH from private networks
       extraInputRules = ''
         # IPv4 private ranges
         ip saddr 192.168.0.0/16 tcp dport 22 accept
