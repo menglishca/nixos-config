@@ -19,6 +19,7 @@ let
           url = "https://raw.githubusercontent.com/jothi-prasath/SmallSur/refs/heads/master/wallpaper/smallsur.png";
           sha256 = "sha256-43xHDuZgabYuQjo6NvPyWHv2wq3yn0WJX9OrlkAEO9U=";
         };
+        dont-upack = true;
         installPhase = ''
           mkdir -p $out/share/wallpapers
           cp $src $out/share/wallpapers/smallsur.png

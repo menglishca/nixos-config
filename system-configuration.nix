@@ -9,6 +9,9 @@
         extraGroups = [ "wheel" "networkmanager" ];
         initialPassword = "changeme";
       };
+      root = {
+        initialPassword = "changeme";
+      };
     };
   };
 
@@ -16,7 +19,7 @@
     openssh = {
       enable = true;
       settings = {
-        PermitRootLogin = "no";
+        PermitRootLogin = "yes";
         PasswordAuthentication = true;
       };
     };

@@ -25,6 +25,6 @@
   # Pick your rice! (Delegates everything to themes/themes.nix)
   desktop.themes = {
     enable = true;
-    preset = "smallSur";  # ← Switch here (or override in configuration.nix)
+    preset = "smallSur-light";  # ← Switch here (or override in configuration.nix)
   };
 }
