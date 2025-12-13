@@ -18,6 +18,32 @@ refind_dir = None
 libc = CDLL("libc.so.6")
 install_config = json.load(open('@configPath@', 'r'))
 
+def clean_old_boot_files():
+    """Remove boot files that are no longer referenced by any generation"""
+    # Get all current boot file references
+    current_files = set()
+    
+    for (profile, gens) in profiles:
+        for gen in gens:
+            gen_path = get_system_path(profile, gen)
+            boot_json = json.load(open(os.path.join(gen_path, 'boot.json'), 'r'))
+            boot_spec = bootjson_to_bootspec(boot_json)
+            
+            # Add kernel and initrd references
+            current_files.add(get_kernel_uri(boot_spec.kernel))
+            if boot_spec.initrd:
+                current_files.add(get_kernel_uri(boot_spec.initrd))
+    
+    # Scan boot directory and remove unreferenced files
+    boot_dir = os.path.join(refind_dir, "kernels")
+    if os.path.exists(boot_dir):
+        for filename in os.listdir(boot_dir):
+            filepath = os.path.join(boot_dir, filename)
+            uri = os.path.join('/efi/refind/kernels', filename)
+            if uri not in current_files:
+                print(f"Removing orphaned boot file: {filepath}")
+                os.remove(filepath)
+
 def copy_tree(from_dir: str, to_dir: str):
     for root, dirs, files in os.walk(from_dir):
         relative_path = os.path.relpath(root, from_dir)
@@ -84,16 +110,15 @@ def is_fs_type_supported(fs_type: str) -> bool:
 paths = {}
 
 def get_copied_path_uri(path: str, target: str) -> str:
+    """Create a symlink instead of copying"""
     package_id = os.path.basename(os.path.dirname(path))
     suffix = os.path.basename(path)
     dest_file = f'{package_id}-{suffix}'
     dest_path = os.path.join(refind_dir, target, dest_file)
-
+    
     if not os.path.exists(dest_path):
-        copy_file(path, dest_path)
-    else:
-        paths[dest_path] = True
-
+        os.symlink(path, dest_path)
+    
     return os.path.join('/efi/refind', target, dest_file)
 
 def get_path_uri(path: str) -> str:
@@ -332,11 +357,54 @@ def install_bootloader() -> None:
                     '-L', 'rEFInd',
                 ], stderr=subprocess.STDOUT, universal_newlines=True)
 
-    print("removing unused boot files...")
-    for path in paths:
-        if not paths[path]:
-            os.remove(path)
+    cleanup_orphaned_boot_files(refind_dir, profiles_data)
 
+    print("removing unused boot files...")
+    for path in list(paths.keys()):
+        if not paths[path]:
+            try:
+                if os.path.exists(path):
+                    os.remove(path)
+                    print(f"Removed: {path}")
+            except Exception as e:
+                print(f"Warning: Could not remove {path}: {e}")
+
+def cleanup_orphaned_boot_files(refind_dir: str, profiles_data: List[Tuple[str, List[int]]]) -> None:
+    """Remove boot files that are no longer referenced by any generation"""
+    boot_dir = os.path.join(refind_dir, "kernels")
+    if not os.path.exists(boot_dir):
+        return
+    
+    # Get all currently referenced boot files
+    referenced_files = set()
+    
+    for profile, gens in profiles_data:
+        for gen in gens:
+            gen_path = get_system_path(profile, str(gen))
+            if not os.path.exists(os.path.join(gen_path, 'boot.json')):
+                continue
+                
+            boot_json = json.load(open(os.path.join(gen_path, 'boot.json'), 'r'))
+            boot_spec = bootjson_to_bootspec(boot_json)
+            
+            # Add kernel URI
+            kernel_uri = get_kernel_uri(boot_spec.kernel)
+            referenced_files.add(os.path.basename(kernel_uri))
+            
+            # Add initrd URI if exists
+            if boot_spec.initrd:
+                initrd_uri = get_kernel_uri(boot_spec.initrd)
+                referenced_files.add(os.path.basename(initrd_uri))
+    
+    # Remove orphaned files
+    for filename in os.listdir(boot_dir):
+        if filename not in referenced_files:
+            filepath = os.path.join(boot_dir, filename)
+            try:
+                os.remove(filepath)
+                print(f"Removed orphaned boot file: {filepath}")
+            except Exception as e:
+                print(f"Warning: Could not remove {filepath}: {e}")
 
 def main() -> None:
     try:
