@@ -6,8 +6,11 @@
   ];
 
   # XFCE base setup (shared across themes)
-  services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.displayManager.lightdm.enable = lib.mkDefault true;  # Or sddm/gdm
+  services.xserver = {
+    enable = true;
+    desktopManager.xfce.enable = true;
+    displayManager.lightdm.enable = lib.mkDefault true;  # Or sddm/gdm
+  };
 
   environment.systemPackages = with pkgs.xfce; [
     # Panels/plugins (always)
@@ -22,6 +25,6 @@
   # Pick your rice! (Delegates everything to themes/themes.nix)
   desktop.themes = {
     enable = true;
-    preset = "smallSur-light";  # ← Switch here (or override in configuration.nix)
+    preset = "smallSur";  # ← Switch here (or override in configuration.nix)
   };
 }
