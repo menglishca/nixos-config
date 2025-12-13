@@ -1,28 +1,27 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  services.xserver = {
-    enable = true;
-
-    # XFCE desktop
-    desktopManager.xfce.enable = true;
-
-    # Pick a display manager (login screen).
-    displayManager.lightdm.enable = true;
-  };
-
-  # Enable input handling
-  services.xserver.libinput.enable = true;
-
-  # Nice-to-have extras for XFCE
-  environment.systemPackages = with pkgs; [
-     xfce.xfce4-volumed-pulse
-#    xfce4-whiskermenu-plugin   # better applications menu
-#    xfce4-pulseaudio-plugin    # volume control in panel
-#    xfce4-notifyd              # desktop notifications
-#    thunar-volman              # automount USB drives
+  imports = [
+    ./themes/themes.nix
   ];
 
-  # Optional: Bluetooth GUI integration
-  services.blueman.enable = true;
+  # XFCE base setup (shared across themes)
+  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.displayManager.lightdm.enable = lib.mkDefault true;  # Or sddm/gdm
+
+  environment.systemPackages = with pkgs.xfce; [
+    # Panels/plugins (always)
+    xfce4-panel
+    xfce4-whiskermenu-plugin
+    xfce4-docklike-plugin
+    xfce4-panel-profiles
+    xfce4-pulseaudio-plugin
+    # Add more XFCE base...
+  ];
+
+  # Pick your rice! (Delegates everything to themes/themes.nix)
+  desktop.themes = {
+    enable = true;
+    preset = "smallSur-light";  # ← Switch here (or override in configuration.nix)
+  };
 }

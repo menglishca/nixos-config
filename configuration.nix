@@ -12,8 +12,6 @@
       ./boot-configuration.nix
       ./system-configuration.nix
       ./desktop-configuration.nix
-      ./themes/small-sur.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  themes.smallSur.enable = true;
 }
