@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
+  system.stateVersion = "25.05";
   users = {
     users = { #Weird duplicate naming convention, but apparently required
       matthew = {
         isNormalUser = true;
         description = "Matthew";
-        extraGroups = [ "wheel" "networkmanager" ];
+        extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
         initialPassword = "changeme";
       };
       root = {
@@ -43,5 +44,10 @@
         tcp dport 22 drop
       '';
     };
+  };
+
+  environment.variables = {
+    JAVA_HOME = "${pkgs.temurin-bin-21}/lib/openjdk";
+    TERMINAL = "${pkgs.rxvt-unicode-unwrapped}/bin/urxvt";
   };
 }

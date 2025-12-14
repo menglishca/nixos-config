@@ -19,7 +19,7 @@ let
           url = "https://raw.githubusercontent.com/jothi-prasath/SmallSur/refs/heads/master/wallpaper/smallsur.png";
           sha256 = "sha256-43xHDuZgabYuQjo6NvPyWHv2wq3yn0WJX9OrlkAEO9U=";
         };
-        dont-upack = true;
+        dontUnpack = true;
         installPhase = ''
           mkdir -p $out/share/wallpapers
           cp $src $out/share/wallpapers/smallsur.png
@@ -45,6 +45,7 @@ let
           url = "https://example.com/dark.png";  # Your URL
           sha256 = lib.fakeSha256;  # nix-prefetch-url it
         };
+        dontUnpack = true;
         installPhase = ''
           mkdir -p $out/share/wallpapers
           cp $src $out/share/wallpapers/dark.png
