@@ -12,23 +12,23 @@
       ./desktop-configuration.nix
       <home-manager/nixos>
     ];
-
   nix.settings = {
-    substituters = [
-      "https://cache.nixos.org/"
-      "https://nix-community.cachix.org"  # Community pkgs (e.g., neovim plugins)
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16Zjyypy8cSk9ETrE="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+  substituters = lib.mkForce [
+    "https://cache.nixos.org"
+    "https://nix-community.cachix.org"
+  ];
 
-    # Max jobs/connections for faster downloads
-    cores = 0;  # Use all cores
-    max-jobs = "auto";
-    sandbox = true;  # Secure builds
-    experimental-features = [ "nix-command" "flakes" ];
-  };
+  trusted-public-keys = lib.mkForce [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+  ];
+
+  # keep the rest if you want
+  cores = 0;
+  max-jobs = "auto";
+  sandbox = true;
+  experimental-features = [ "nix-command" "flakes" ];
+};
 
   home-manager = {
     useGlobalPkgs = true;

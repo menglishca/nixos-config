@@ -5,7 +5,7 @@
     username = "matthew";
     homeDirectory = "/home/matthew";
     stateVersion = "25.05";
-    theme = "SmallSur";
+    theme = "Blocks";
   };
   programs = {
     bash = {
@@ -31,10 +31,10 @@
           # Pane navigation (arrow keys)
           bind-key Left  select-pane -L
           bind-key Right select-pane -R
-        bind-key Up    select-pane -U
-        bind-key Down  select-pane -D
+          bind-key Up    select-pane -U
+          bind-key Down  select-pane -D
       '';
-    }
+    };
     urxvt = {
       enable = true;
       fonts = [
