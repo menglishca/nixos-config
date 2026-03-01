@@ -5,7 +5,12 @@
     username = "matthew";
     homeDirectory = "/home/matthew";
     stateVersion = "25.05";
-    theme = "Blocks";
+    theme = "PopOS";
+    themeOptions = {
+      PopOS = {
+        variant = "dark";
+      };
+    };
   };
   programs = {
     bash = {
