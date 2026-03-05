@@ -90,7 +90,7 @@ in
       # Optional: basic panel layout defaults for Pop-like look.
       # You can refine these once you export your actual xfconf panel setup.
       xfce4-panel = {
-        "panels" = "1,2";
+        "panels" = [1 2];
 
         # Top panel (status bar) [web:24]
         "panels/panel-1/position"      = "p=6;x=0;y=0";  # top centered
@@ -98,13 +98,36 @@ in
         "panels/panel-1/length"        = 100;
         "panels/panel-1/length-adjust" = true;
         "panels/panel-1/mode"          = 0;
+        "panels/panel-1/position-locked"  = true;
 
         # Bottom panel (icon-only taskbar)
         "panels/panel-2/position"      = "p=10;x=0;y=0"; # bottom centered
-        "panels/panel-2/size"          = 36;
+        "panels/panel-2/size"          = 40;
         "panels/panel-2/length"        = 100;
         "panels/panel-2/length-adjust" = true;
         "panels/panel-2/mode"          = 0;
+        "panels/panel-2/position-locked"  = true;
+
+        # Only: separator, docklike, separator (fixed IDs 20,21,22)
+        "panels/panel-2/plugin-ids" = [20 21 22];
+
+        # Left separator (expanded, transparent)
+        "plugins/plugin-20"   = "separator";
+        "plugins/plugin-20/expand" = true;
+        "plugins/plugin-20/style"  = 0;
+
+        # Center dock (Docklike Taskbar)
+        "plugins/plugin-21"   = "docklike";
+        "plugins/plugin-21/icon-size"        = 36;   # icon size in px
+        "plugins/plugin-21/show-labels"      = false;
+        "plugins/plugin-21/group-windows"    = true;
+        "plugins/plugin-21/show-only-pinned" = false;
+        "plugins/plugin-21/indicator-style"  = 0;    # 0/1/2 – varies by version
+
+        # Right separator (expanded, transparent)
+        "plugins/plugin-22"   = "separator";
+        "plugins/plugin-22/expand" = true;
+        "plugins/plugin-22/style"  = 0;
       };
     };
 
