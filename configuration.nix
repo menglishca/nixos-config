@@ -13,22 +13,22 @@
       <home-manager/nixos>
     ];
   nix.settings = {
-  substituters = lib.mkForce [
-    "https://cache.nixos.org"
-    "https://nix-community.cachix.org"
-  ];
+    substituters = lib.mkForce [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
 
-  trusted-public-keys = lib.mkForce [
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  ];
+    trusted-public-keys = lib.mkForce [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
 
-  # keep the rest if you want
-  cores = 0;
-  max-jobs = "auto";
-  sandbox = true;
-  experimental-features = [ "nix-command" "flakes" ];
-};
+    # keep the rest if you want 
+    cores = 0;
+    max-jobs = "auto";
+    sandbox = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   home-manager = {
     useGlobalPkgs = true;
