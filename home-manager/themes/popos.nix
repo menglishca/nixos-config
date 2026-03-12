@@ -2,7 +2,17 @@
 
 let
   inherit (lib) mkOption types mkIf;
-  cfg = config.home.themeOptions.PopOS;
+  themeConfig = config.home.themeOptions.PopOS;
+  dockConfig = {
+    id = 21;
+    activeIndicatorColor = "rgb(255, 255, 255)";
+    inactiveIndicatorColor = "rgb(192, 191, 188)";
+  };
+  mkSeparator = id: {
+    "plugins/plugin-${toString id}" = "separator";
+    "plugins/plugin-${toString id}/expand" = true;
+    "plugins/plugin-${toString id}/style" = 0;
+  };
 in
 {
   options.home.themeOptions.PopOS = {
@@ -25,134 +35,155 @@ in
       xfce.xfce4-notifyd
       xfce.xfce4-whiskermenu-plugin
 
-      # Spotlight-style launcher (Pop Launcher or fallback) [web:59]
-      # pop-launcher or ulauncher / rofi if you prefer
+      # Spotlight-style launcher
       rofi
+      rofi-power-menu
 
-      # Pop themes [web:55][web:60][web:68]
+      # Pop themes
       pop-gtk-theme
       pop-icon-theme
     ];
 
     ############################
-    # GTK theming
+    # GTK theming (Stylix-owned)
     ############################
-    gtk = {
-      enable = true;
-
-      theme = {
-        # Pop generally uses a single name "Pop" or "Pop-dark" depending on nixpkgs version; adjust if needed. [web:55][web:68]
-        name =
-          if cfg.variant == "dark"
-          then "Pop-dark"
-          else "Pop";
-        package = pkgs.pop-gtk-theme;
-      };
-
-      iconTheme = {
-        name = "Pop";          # pop-icon-theme installs icons under this name in most setups. [web:60][web:63]
-        package = pkgs.pop-icon-theme;
-      };
-
-      cursorTheme = {
-        # Pop doesn’t ship a separate cursor theme via nixpkgs in all channels,
-        # so we just reuse the default or Pop if present. Adjust once you know the exact cursor name. [web:63]
-        name = "Pop";
-        # no dedicated package; XFCE will fall back gracefully
-      };
-    };
+    # Do NOT set gtk.* here; Stylix owns GTK theme, icons, cursor and gtk.css.
+    # We just append our dock tweaks to Stylix' generated CSS.
+    stylix.targets.gtk.extraCss = ''
+      /* Docklike plugin padding tweak */
+      #docklike-plugin {
+        padding-bottom: 3px;
+      }
+    '';
 
     ############################
     # XFCE settings (xfconf)
     ############################
     xfconf.settings = {
-      xsettings = {
-        "Net/ThemeName" =
-          if cfg.variant == "dark"
-          then "Pop-dark"
-          else "Pop";
+      #xsettings = {
+      #  "Net/ThemeName" =
+      #    if themeConfig.variant == "dark"
+      #    then "Pop-dark"
+      #    else "Pop";
+#
+#        "Net/IconThemeName" = "Pop";
+#
+#        "Gtk/CursorThemeName" = "Pop";
+#      };
 
-        "Net/IconThemeName" = "Pop";
+ #     xfwm4 = {
+ #       "general/theme" =
+ #         if themeConfig.variant == "dark"
+ #         then "Pop-dark"
+ #         else "Pop";
+ #       "general/title_font" = "Inter Bold 10";
+ #       "general/button_layout" = "O|HMC";
+ #     };
 
-        "Gtk/CursorThemeName" = "Pop";
-      };
-
-      xfwm4 = {
-        # Use same name as GTK theme for window borders. [web:55][web:68]
-        "general/theme" =
-          if cfg.variant == "dark"
-          then "Pop-dark"
-          else "Pop";
-        "general/title_font" = "Inter Bold 10";
-        "general/button_layout" = "O|HMC";
-      };
-
-      # Optional: basic panel layout defaults for Pop-like look.
-      # You can refine these once you export your actual xfconf panel setup.
       xfce4-panel = {
-        "panels" = [1 2];
+        "panels" = [ 1 2 ];
 
-        # Top panel (status bar) [web:24]
-        "panels/panel-1/position"      = "p=6;x=0;y=0";  # top centered
+        # Top panel
+        "panels/panel-1/position"      = "p=6;x=0;y=0";
         "panels/panel-1/size"          = 28;
         "panels/panel-1/length"        = 100;
         "panels/panel-1/length-adjust" = true;
         "panels/panel-1/mode"          = 0;
         "panels/panel-1/position-locked"  = true;
+        "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 ];
 
-        # Bottom panel (icon-only taskbar)
-        "panels/panel-2/position"      = "p=10;x=0;y=0"; # bottom centered
-        "panels/panel-2/size"          = 40;
+        "plugins/plugin-1" = "whiskermenu";
+        "plugins/plugin-3" = "clock";
+        "plugins/plugin-3/digital-format" = "%b %-e %i:%M %p";
+        "plugins/plugin-5" = "systray";
+        "plugins/plugin-6" = "power-manager-plugin";
+        "plugins/plugin-7" = "launcher";
+        "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
+
+        # Bottom panel (dock)
+        "panels/panel-2/position"      = "p=10;x=0;y=0";
+        "panels/panel-2/size"          = 46;
         "panels/panel-2/length"        = 100;
         "panels/panel-2/length-adjust" = true;
         "panels/panel-2/mode"          = 0;
         "panels/panel-2/position-locked"  = true;
+        "panels/panel-2/autohide-behavior" = 0;
 
-        # Only: separator, docklike, separator (fixed IDs 20,21,22)
-        "panels/panel-2/plugin-ids" = [20 21 22];
-
-        # Left separator (expanded, transparent)
-        "plugins/plugin-20"   = "separator";
-        "plugins/plugin-20/expand" = true;
-        "plugins/plugin-20/style"  = 0;
-
-        # Center dock (Docklike Taskbar)
-        "plugins/plugin-21"   = "docklike";
-        "plugins/plugin-21/icon-size"        = 36;   # icon size in px
-        "plugins/plugin-21/show-labels"      = false;
-        "plugins/plugin-21/group-windows"    = true;
-        "plugins/plugin-21/show-only-pinned" = false;
-        "plugins/plugin-21/indicator-style"  = 0;    # 0/1/2 – varies by version
-
-        # Right separator (expanded, transparent)
-        "plugins/plugin-22"   = "separator";
-        "plugins/plugin-22/expand" = true;
-        "plugins/plugin-22/style"  = 0;
-      };
+        "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
+        "plugins/plugin-${toString dockConfig.id}" = "docklike";
+      }
+      // mkSeparator 2
+      // mkSeparator 4
+      // mkSeparator 20
+      // mkSeparator 22;
     };
+
+    ############################
+    # Docklike plugin config
+    ############################
+    home.file.".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
+      pkgs.writeText "docklike-${toString dockConfig.id}.rc" ''
+        [user]
+        indicatorStyle=4
+        inactiveIndicatorStyle=4
+        indicatorOrientation=1
+        indicatorColor=${dockConfig.activeIndicatorColor}
+        inactiveColor=${dockConfig.inactiveIndicatorColor}
+        pinned=firefox;
+        onlyDisplayVisible=true
+        forceIconSize=true
+        iconSize=32
+      '';
+
+    ############################
+    # Pop-style quick menu
+    ############################
+        home.file.".local/bin/pop-quick-menu" = {
+      text = ''
+        #!/usr/bin/env bash
+        choice=$(printf '%s\n' \
+          "  Sound" \
+          "  Bluetooth" \
+          "  Night Light" \
+          "  Settings" \
+          "⏻  Power…" \
+          | rofi -dmenu -p "Quick Settings")
+
+        case "$choice" in
+          "  Sound")
+            pavucontrol >/dev/null 2>&1 & ;;
+          "  Bluetooth")
+            rofi-bluetooth >/dev/null 2>&1 & ;;
+          "  Night Light")
+            pkill -x redshift || redshift -O 4500K >/dev/null 2>&1 & ;;
+          "  Settings")
+            xfce4-settings-manager >/dev/null 2>&1 & ;;
+          "⏻  Power…")
+            rofi -show power-menu -modi power-menu:rofi-power-menu ;;
+        esac
+      '';
+      executable = true;
+    };
+
+    home.file.".local/share/applications/pop-quick-menu.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Quick Settings
+      Comment=PopOS-style quick settings menu
+      Exec=/home/matthew/.local/bin/pop-quick-menu
+      Icon=preferences-system
+      Terminal=false
+    '';
 
     ############################
     # Wallpapers
     ############################
-    # There isn't a ready-made Pop wallpaper package in nixpkgs everywhere,
-    # so here is a simple placeholder you can swap later. [web:58][web:65]
     home.file."Pictures/Wallpapers/PopOS".source =
       pkgs.fetchFromGitHub {
         owner = "pop-os";
         repo = "gtk-theme";
         rev = "master";
-        # You will need to update this hash after first build.
         hash = "sha256-MBcbrcZlFANWvw4W8kDn+C99c0xp7FXnM/BlB5C3sAw=";
       } + "/wallpapers";
-
-    ############################
-    # Optional: restart XFCE panel on switch
-    ############################
-    home.activation.restartXfcePanel =
-      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        if pgrep xfce4-panel >/dev/null; then
-          xfce4-panel --restart
-        fi
-      '';
   };
 }

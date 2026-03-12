@@ -14,13 +14,13 @@
   ];
   environment.systemPackages = with pkgs; [
     firefox
-    vscode
     nano
+    killall
     featherpad
     galculator
     redshift
     keepassxc
-    discord
+    # discord
     # eddie
     # virtualbox
     anydesk
@@ -28,7 +28,8 @@
     vlc
     qbittorrent
     temurin-bin-21
-    rxvt-unicode-unwrapped
+    redshift
+    alacritty
   ];
 
   virtualisation.virtualbox.host = {

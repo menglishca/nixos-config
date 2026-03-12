@@ -53,7 +53,7 @@
     };
     plymouth = {
       enable = true;
-      theme = "bgrt";
+      theme = lib.mkForce "stylix";
     };
     consoleLogLevel = 3;
     initrd.verbose = false;

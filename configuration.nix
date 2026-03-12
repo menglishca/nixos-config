@@ -10,7 +10,6 @@
       ./boot-configuration.nix
       ./system-configuration.nix
       ./desktop-configuration.nix
-      <home-manager/nixos>
     ];
   nix.settings = {
     substituters = lib.mkForce [
@@ -28,11 +27,6 @@
     max-jobs = "auto";
     sandbox = true;
     experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.matthew = import ./home-manager/matthew.nix;
+    auto-optimise-store = true;
   };
 }
