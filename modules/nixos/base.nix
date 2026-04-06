@@ -6,6 +6,7 @@
 
   imports = [
     ./system/default.nix
+    ../unfree.nix
   ];
 
   nix.settings = {
@@ -31,5 +32,11 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # Pin this to the release you first installed from and only change it intentionally.
-  system.stateVersion = lib.mkDefault "24.11";
+  system.stateVersion = lib.mkDefault "25.11";
+
+  allowedUnfreePackages = [
+    "anydesk"
+    "vscode"
+    "zoom"
+  ];
 }

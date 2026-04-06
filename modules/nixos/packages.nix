@@ -8,7 +8,6 @@
     nano
     killall
     featherpad
-    galculator
     redshift
     keepassxc
     anydesk

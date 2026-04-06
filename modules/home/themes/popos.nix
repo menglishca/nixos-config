@@ -45,22 +45,22 @@ in
 
       # Example base16 scheme – replace with a real PopOS-like scheme
       base16Scheme = {
-        base00 = "1d2021";
-        base01 = "3c3836";
-        base02 = "504945";
-        base03 = "665c54";
-        base04 = "bdae93";
-        base05 = "d5c4a1";
-        base06 = "ebdbb2";
-        base07 = "fbf1c7";
-        base08 = "fb4934";
-        base09 = "fe8019";
-        base0A = "fabd2f";
-        base0B = "b8bb26";
-        base0C = "8ec07c";
-        base0D = "83a598";
-        base0E = "d3869b";
-        base0F = "d65d0e";
+        base00 = "1a1444";
+        base01 = "2e418d";
+        base02 = "6b58ce";
+        base03 = "73a2ce";
+        base04 = "99bce2";
+        base05 = "f7ded9";
+        base06 = "fbe8d7";
+        base07 = "f4e2ce";
+        base08 = "8386ed";
+        base09 = "b5838e";
+        base0A = "7191cc";
+        base0B = "9b89b3";
+        base0C = "7c8cd9";
+        base0D = "a786a1";
+        base0E = "a882bf";
+        base0F = "947dff";
       };
 
       # Let PopOS decide which targets Stylix themes
