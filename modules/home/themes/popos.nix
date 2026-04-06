@@ -63,6 +63,14 @@ in
         base0F = "947dff";
       };
 
+        fonts = {
+          sizes = {
+            applications = 10;  # GTK apps, window titles (if using GTK theme)
+            terminal     = 11;  # Alacritty etc.
+            desktop      = 10;  # panel, menus
+          };
+        };
+
       # Let PopOS decide which targets Stylix themes
       targets = {
         gtk.enable      = true;
@@ -86,6 +94,12 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
+
+          #xfce4-panel, 
+          #xfce4-panel.panel {
+            background-color: #33302f;
+            background-image: none;
+          }
       '';
     };
 
@@ -146,11 +160,11 @@ in
 
         "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
         "plugins/plugin-${toString dockConfig.id}" = "docklike";
-      };
-      # mkSeparator 2
-      # mkSeparator 4
-      # mkSeparator 20
-      # mkSeparator dockConfig.id;
+      }
+      // mkSeparator 2
+      // mkSeparator 4
+      // mkSeparator 20
+      // mkSeparator 22;
     };
 
     
