@@ -94,12 +94,6 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
-
-          #xfce4-panel, 
-          #xfce4-panel.panel {
-            background-color: #33302f;
-            background-image: none;
-          }
       '';
     };
 
@@ -139,6 +133,7 @@ in
         "panels/panel-1/length-adjust" = true;
         "panels/panel-1/mode"          = 0;
         "panels/panel-1/position-locked"  = true;
+        "panels/panel-1/background-color" = "#33302f";
         "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 ];
 
         "plugins/plugin-1" = "whiskermenu";
@@ -157,6 +152,7 @@ in
         "panels/panel-2/mode"          = 0;
         "panels/panel-2/position-locked"  = true;
         "panels/panel-2/autohide-behavior" = 0;
+        "panels/panel-2/background-color" = "#33302f";
 
         "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
         "plugins/plugin-${toString dockConfig.id}" = "docklike";
