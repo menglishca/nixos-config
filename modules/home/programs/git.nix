@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    config = {
+    extraConfig = {
       alias = {
         set-upstream = "!git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)";
         "undo-commit" = "reset --soft HEAD~1";

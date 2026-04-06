@@ -3,8 +3,17 @@
 {
   imports = [
     ../../modules/home/base.nix
-    ../../modules/home/git.nix
+    ../../modules/home/programs
+    ../../modules/home/xdg.nix
+    ../../modules/home/theme.nix
   ];
+
+  home = {
+    username = "matthew";
+    homeDirectory = "/home/matthew";
+    theme = "PopOS";
+    themeOptions.PopOS.variant = "light";
+  };
 
   # This file is your user-level composition root.
   # Keep it readable. It should answer:

@@ -92,6 +92,39 @@ fi
 
 cd "$repo"
 
+# Detect output file even when using shell redirection:
+# If -o/--output is set, prefer that.
+# Otherwise, try to use $OUT or $OUTPUT if the user exported it in the shell.
+# If still empty, we can't know the redirection target reliably; leave it blank.
+if [[ -z "$output" ]]; then
+  if [[ -n "${OUT:-}" ]]; then
+    output="$OUT"
+  elif [[ -n "${OUTPUT:-}" ]]; then
+    output="$OUTPUT"
+  fi
+fi
+
+# If we know an output file path, add it to excludes.
+if [[ -n "${output:-}" ]]; then
+  # Make it relative to repo if it is under repo.
+  case "$output" in
+    /*)
+      # Absolute path; strip repo prefix if applicable.
+      if [[ "$output" == "$PWD/"* ]]; then
+        rel="${output#"$PWD/"}"
+        exclude_globs+=("$rel")
+      else
+        # Outside repo; nothing to exclude.
+        :
+      fi
+      ;;
+    *)
+      # Relative to cwd/repo.
+      exclude_globs+=("$output")
+      ;;
+  esac
+fi
+
 rg_cmd=(rg --files)
 
 if (( no_gitignore )); then
@@ -200,6 +233,7 @@ emit() {
 }
 
 if [[ -n "$output" ]]; then
+  # If output is inside repo, it is already excluded from rg_cmd above.
   emit > "$output"
   echo "Wrote $output"
 else

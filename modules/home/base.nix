@@ -1,14 +1,12 @@
+# modules/home/base.nix
 { config, lib, pkgs, ... }:
 
 {
-  # Home Manager controls user-level programs, files, and preferences.
-  # Use this for shell config, Git config, editor config, and dotfiles.
+  # Shared Home Manager defaults for all users
 
-  home.username = "matthew";
-  home.homeDirectory = "/home/matthew";
-
-  # Home Manager also has a stateVersion, separate from NixOS.
+  # Home Manager state version (separate from NixOS).
   home.stateVersion = "24.11";
 
+  # Enable the Home Manager program itself.
   programs.home-manager.enable = true;
 }

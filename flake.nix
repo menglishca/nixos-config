@@ -24,7 +24,6 @@
         inherit system;
         specialArgs = {
           inherit self;
-          inherit USERNAME;
         };
         modules = [
           ./hosts/testing-vm
@@ -42,3 +41,22 @@
       };
     };
 }
+
+#stylix.base16Scheme = {
+#  base00 = "1a1444";
+#  base01 = "2e418d";
+#  base02 = "6b58ce";
+#  base03 = "73a2ce";
+#  base04 = "99bce2";
+#  base05 = "f7ded9";
+#  base06 = "fbe8d7";
+#  base07 = "f4e2ce";
+#  base08 = "8386ed";
+#  base09 = "b5838e";
+#  base0A = "7191cc";
+#  base0B = "9b89b3";
+#  base0C = "7c8cd9";
+#  base0D = "a786a1";
+#  base0E = "a882bf";
+#  base0F = "947dff";
+#};
