@@ -109,11 +109,12 @@ in
     # XFCE panel config (unchanged logic)
     ############################
     xfconf.settings = {
-      xfce4-desktop {
-        "backdrop/single-workspace-mode" = true;
+      xfce4-desktop = {
         "backdrop/single-image-mode" = true;
+        "backdrop/single-workspace-mode" = true;
         "backdrop/screen0/monitor0/workspace0/last-image" = "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
-      }
+        "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
+      };
       xfce4-panel = {
         "panels" = [ 1 2 ];
 
@@ -145,11 +146,11 @@ in
 
         "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
         "plugins/plugin-${toString dockConfig.id}" = "docklike";
-      }
-      // mkSeparator 2
-      // mkSeparator 4
-      // mkSeparator 20
-      // mkSeparator dockConfig.id;
+      };
+      # mkSeparator 2
+      # mkSeparator 4
+      # mkSeparator 20
+      # mkSeparator dockConfig.id;
     };
 
     
