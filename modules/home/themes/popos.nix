@@ -108,9 +108,6 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
-        #clock-button label {
-          font-size: 14pt;
-        }
       '';
     };
 
@@ -123,7 +120,7 @@ in
       xfce4-notifyd
       xfce4-whiskermenu-plugin
 
-      nerd-fonts.fira-code
+      fira-sans
 
       rofi
       rofi-power-menu
@@ -136,9 +133,6 @@ in
     # XFCE panel config (unchanged logic)
     ############################
     xfconf.settings = {
-      xsettings = {
-        "Gtk/FontName" = "Fira Sans 10";
-      };
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
         "backdrop/single-workspace-mode" = true;
@@ -161,7 +155,7 @@ in
 
         "plugins/plugin-1" = "whiskermenu";
         "plugins/plugin-3" = "clock";
-        "plugins/plugin-3/digital-time-format" = "%b %-e %i:%M %p";
+        "plugins/plugin-3/digital-time-format" = "<span font_family=\"Fira Sans\">%b %-e %-I:%M %p</span>";
         
         "plugins/plugin-5" = "systray";
         "plugins/plugin-6" = "power-manager-plugin";
