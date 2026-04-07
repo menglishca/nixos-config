@@ -17,7 +17,7 @@ let
     "plugins/plugin-${toString id}/expand" = true;
     "plugins/plugin-${toString id}/style" = 0;
   };
-  hexToRgbaList = hex: alpha:
+  hexToRgba = hex: alpha:
     let
       h   = lib.removePrefix "#" hex;
       rHex = builtins.substring 0 2 h;
