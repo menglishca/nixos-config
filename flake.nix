@@ -16,30 +16,31 @@
   };
 
   outputs = { self, nixpkgs, home-manager, stylix, ... }:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-    in {
-      nixosConfigurations.testing-vm = lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit self;
-        };
-        modules = [
-          ./hosts/testing-vm
-          home-manager.nixosModules.home-manager
-          stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.matthew = import ./users/matthew/home.nix;
-            home-manager.extraSpecialArgs = {
-              inherit self;
-            };
-          }
-        ];
-      };
+  let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+  in {
+    nixosConfigurations.testing-vm = lib.nixosSystem {
+      inherit system;
+      specialArgs = { inherit self; };
+      modules = [
+        ./hosts/testing-vm
+        home-manager.nixosModules.home-manager
+        stylix.nixosModules.stylix
+
+        {
+          home-manager = {
+            backupFileExtension = "backup";
+            extraSpecialArgs = { inherit self; };
+            overwriteBackup = true;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.matthew = import ./users/matthew/home.nix;
+          };
+        }
+      ];
     };
+  };
 }
 
 #stylix.base16Scheme = {
