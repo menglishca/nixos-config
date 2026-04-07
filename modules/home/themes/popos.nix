@@ -17,7 +17,7 @@ let
     "plugins/plugin-${toString id}/expand" = true;
     "plugins/plugin-${toString id}/style" = 0;
   };
-  hexToRgba = hex: alpha:
+  hexToRgbaList = hex: alpha:
     let
       h   = lib.removePrefix "#" hex;
       rHex = builtins.substring 0 2 h;
@@ -25,11 +25,12 @@ let
       bHex = builtins.substring 4 2 h;
 
       toFloat = v: (builtins.fromTOML "x = 0x${v}").x / 255.0;
-      r = toFloat rHex;
-      g = toFloat gHex;
-      b = toFloat bHex;
-    in
-      "${toString r} ${toString g} ${toString b} ${toString alpha}";
+    in [
+      (toFloat rHex)
+      (toFloat gHex)
+      (toFloat bHex)
+      alpha
+    ];
 in
 {
   # Per-theme options under home.themeOptions.PopOS
@@ -76,13 +77,13 @@ in
         base0F = "947dff";
       };
 
-        fonts = {
-          sizes = {
-            applications = 10;  # GTK apps, window titles (if using GTK theme)
-            terminal     = 11;  # Alacritty etc.
-            desktop      = 10;  # panel, menus
-          };
+      fonts = {
+        sizes = {
+          applications = 10;  # GTK apps, window titles (if using GTK theme)
+          terminal     = 11;  # Alacritty etc.
+          desktop      = 10;  # panel, menus
         };
+      };
 
       # Let PopOS decide which targets Stylix themes
       targets = {
