@@ -17,6 +17,19 @@ let
     "plugins/plugin-${toString id}/expand" = true;
     "plugins/plugin-${toString id}/style" = 0;
   };
+  hexToRgba = hex: alpha:
+    let
+      h   = lib.removePrefix "#" hex;
+      rHex = builtins.substring 0 2 h;
+      gHex = builtins.substring 2 2 h;
+      bHex = builtins.substring 4 2 h;
+
+      toFloat = v: (builtins.fromTOML "x = 0x${v}").x / 255.0;
+      r = toFloat rHex;
+      g = toFloat gHex;
+      b = toFloat bHex;
+    in
+      "${toString r} ${toString g} ${toString b} ${toString alpha}";
 in
 {
   # Per-theme options under home.themeOptions.PopOS
@@ -133,7 +146,8 @@ in
         "panels/panel-1/length-adjust" = true;
         "panels/panel-1/mode"          = 0;
         "panels/panel-1/position-locked"  = true;
-        "panels/panel-1/background-color" = "#33302f";
+        "panels/panel-1/background-style" = 1;
+        "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 1.0;
         "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 ];
 
         "plugins/plugin-1" = "whiskermenu";
@@ -152,7 +166,8 @@ in
         "panels/panel-2/mode"          = 0;
         "panels/panel-2/position-locked"  = true;
         "panels/panel-2/autohide-behavior" = 0;
-        "panels/panel-2/background-color" = "#33302f";
+        "panels/panel-2/background-style" = 1;
+        "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 1.0;
 
         "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
         "plugins/plugin-${toString dockConfig.id}" = "docklike";
