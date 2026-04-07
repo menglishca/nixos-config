@@ -150,13 +150,13 @@ in
         "panels/panel-1/mode"          = 0;
         "panels/panel-1/position-locked"  = true;
         "panels/panel-1/background-style" = 1;
-        "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 1.0;
+        "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
         "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 ];
 
         "plugins/plugin-1" = "whiskermenu";
         "plugins/plugin-3" = "clock";
-        "plugins/plugin-3/digital-time-format" = "<span font_family=\"Fira Sans\">%b %-e %-I:%M %p</span>";
-        
+        "plugins/plugin-3/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
+
         "plugins/plugin-5" = "systray";
         "plugins/plugin-6" = "power-manager-plugin";
         "plugins/plugin-7" = "launcher";
@@ -171,7 +171,7 @@ in
         "panels/panel-2/position-locked"  = true;
         "panels/panel-2/autohide-behavior" = 0;
         "panels/panel-2/background-style" = 1;
-        "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 1.0;
+        "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 0.5;
 
         "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
         "plugins/plugin-${toString dockConfig.id}" = "docklike";
