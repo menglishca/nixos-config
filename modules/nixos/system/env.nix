@@ -3,6 +3,7 @@
 {
   environment.variables = {
     JAVA_HOME = "${pkgs.temurin-bin-21}/lib/openjdk";
-    TERMINAL = "${pkgs.rxvt-unicode-unwrapped}/bin/urxvt";
+    TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+    BROWSER = "${pkgs.alacritty}/bin/firefox";
   };
 }

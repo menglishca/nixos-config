@@ -33,6 +33,7 @@
 
   # Pin this to the release you first installed from and only change it intentionally.
   system.stateVersion = lib.mkDefault "25.11";
+  time.timeZone = "America/St_Johns";
 
   allowedUnfreePackages = [
     "anydesk"

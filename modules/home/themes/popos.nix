@@ -108,6 +108,9 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
+        #clock-button label {
+          font-size: 14pt;
+        }
       '';
     };
 
@@ -115,10 +118,12 @@ in
     # Packages (XFCE + theming)
     ############################
     home.packages = with pkgs; [
-      xfce.xfce4-power-manager
-      xfce.xfce4-pulseaudio-plugin
-      xfce.xfce4-notifyd
-      xfce.xfce4-whiskermenu-plugin
+      xfce4-power-manager
+      xfce4-pulseaudio-plugin
+      xfce4-notifyd
+      xfce4-whiskermenu-plugin
+
+      nerd-fonts.fira-code
 
       rofi
       rofi-power-menu
@@ -131,6 +136,9 @@ in
     # XFCE panel config (unchanged logic)
     ############################
     xfconf.settings = {
+      xsettings = {
+        "Gtk/FontName" = "Fira Sans 10";
+      };
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
         "backdrop/single-workspace-mode" = true;
@@ -153,7 +161,8 @@ in
 
         "plugins/plugin-1" = "whiskermenu";
         "plugins/plugin-3" = "clock";
-        "plugins/plugin-3/digital-format" = "%b %-e %i:%M %p";
+        "plugins/plugin-3/digital-time-format" = "%b %-e %i:%M %p";
+        
         "plugins/plugin-5" = "systray";
         "plugins/plugin-6" = "power-manager-plugin";
         "plugins/plugin-7" = "launcher";
