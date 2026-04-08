@@ -51,6 +51,8 @@ in
 {
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
+  gtk.gtk4.theme = config.gtk.theme;
+  xdg.userDirs.setSessionVariables = true;
 
   _module.args.mkDotfiles = mkDotfiles;
 }
