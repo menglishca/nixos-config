@@ -138,8 +138,8 @@ in
           padding-bottom: 3px;
         }
         .genmon_value {
-          padding-left: 6px;
-          padding-right: 6px;
+          padding-left: 9px;
+          padding-right: 9px;
         }
       '';
     };
