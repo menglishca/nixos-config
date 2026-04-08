@@ -13,6 +13,13 @@
     desktopManager.xfce.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    xfce4-whiskermenu-plugin
+    xfce4-docklike-plugin
+    xfce4-panel-profiles
+    xfce4-pulseaudio-plugin
+  ];
+
   # Remove XFCE apps you do not want when enabling the desktop.
   environment.xfce.excludePackages = [
     pkgs.xfce4-terminal

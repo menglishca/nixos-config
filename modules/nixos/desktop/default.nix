@@ -6,6 +6,5 @@
   imports = [
     ./xfce.nix
     ./fonts.nix
-    ./packages.nix
   ];
 }

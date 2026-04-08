@@ -76,8 +76,7 @@ in
     stylix = {
       image = ../../wallpapers/brain.jpg;
 
-      polarity =
-        if themeConfig.variant == "dark" then "dark" else "light";
+      polarity = if themeConfig.variant == "dark" then "dark" else "light";
 
       # Example base16 scheme – replace with a real PopOS-like scheme
       base16Scheme = {
@@ -175,7 +174,7 @@ in
         "panels/panel-1/position-locked"  = true;
         "panels/panel-1/background-style" = 1;
         "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
-        "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 ];
+        "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 9 10 11 ];
 
         "plugins/plugin-1" = "whiskermenu";
         "plugins/plugin-3" = "clock";
@@ -185,6 +184,38 @@ in
         "plugins/plugin-6" = "power-manager-plugin";
         "plugins/plugin-7" = "launcher";
         "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
+
+        # Battery icon
+        "plugins/plugin-8" = "genmon";
+        "plugins/plugin-8/command" = "/home/matthew/.local/bin/panel-status-icon.sh battery";
+        "plugins/plugin-8/period" = 5;
+        "plugins/plugin-8/use_label" = true;
+        "plugins/plugin-8/use_markup" = true;
+        "plugins/plugin-8/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh battery";
+
+        # Wi-Fi icon
+        "plugins/plugin-9" = "genmon";
+        "plugins/plugin-9/command" = "/home/matthew/.local/bin/panel-status-icon.sh wifi";
+        "plugins/plugin-9/period" = 5;
+        "plugins/plugin-9/use_label" = true;
+        "plugins/plugin-9/use_markup" = true;
+        "plugins/plugin-9/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh wifi";
+
+        # Sound icon
+        "plugins/plugin-10" = "genmon";
+        "plugins/plugin-10/command" = "/home/matthew/.local/bin/panel-status-icon.sh sound";
+        "plugins/plugin-10/period" = 5;
+        "plugins/plugin-10/use_label" = true;
+        "plugins/plugin-10/use_markup" = true;
+        "plugins/plugin-10/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh sound";
+
+        # Power icon
+        "plugins/plugin-11" = "genmon";
+        "plugins/plugin-11/command" = "/home/matthew/.local/bin/panel-status-icon.sh power";
+        "plugins/plugin-11/period" = 5;
+        "plugins/plugin-11/use_label" = true;
+        "plugins/plugin-11/use_markup" = true;
+        "plugins/plugin-11/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh power";
 
         # Bottom panel (dock)
         "panels/panel-2/position"      = "p=10;x=0;y=0";
