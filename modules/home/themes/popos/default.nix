@@ -28,12 +28,12 @@ let
       base = "plugins/plugin-${toString id}";
     in {
       "${base}" = "genmon";
-      "${base}/command" = "/home/matthew/.local/bin/panel-status-icon.sh ${arg}";
+      "${base}/command" = "/home/matthew/.local/bin/status_icons/get_icon.sh ${arg}";
       "${base}/update-period" = 300000;
       "${base}/use-label" = false;
       "${base}/font" = "SauceCodePro Nerd Font 11";
       "${base}/use-markup" = true;
-      "${base}/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh ${arg}";
+      "${base}/onclick" = "/home/matthew/.local/bin/menus/get_menu.sh ${arg}";
     };
 
   hexToRgba = hex: alpha:
