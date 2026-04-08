@@ -5,44 +5,42 @@ let
   populateDotfiles =
     { dotfilesDir, prefixDot ? true }:
     let
-      recCollect = rootRel:
+      recursivelyGetFiles = relativePath:
         let
-          dirPath =
-            if rootRel == "" then dotfilesDir else dotfilesDir + "/${rootRel}";
+          dotfilesSourcePath = if relativePath == "" then dotfilesDir else dotfilesDir + "/${relativePath}";
 
           entries =
-            if builtins.pathExists dirPath
-            then builtins.readDir dirPath
+            if builtins.pathExists dotfilesSourcePath
+            then builtins.readDir dotfilesSourcePath
             else {};
         in
           lib.concatMap
-            (name:
+            (fileName:
               let
-                typ      = entries.${name};
-                childRel = if rootRel == "" then name else "${rootRel}/${name}";
+                filetype = entries.${fileName};
+                childRelativePath = if relativePath == "" then fileName else "${relativePath}/${fileName}";
               in
-              if typ == "directory"
-              then recCollect childRel
-              else
-                # Only files become home.file entries; directories are implicit
-                let
-                  parts = lib.splitString "/" childRel;
-                  top   = lib.head parts;
-                  rest  = lib.tail parts;
-
-                  topWithDot = if prefixDot then ".${top}" else top;
-
-                  homePath =
-                    lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
-                in
-                [ {
-                  name  = homePath;
-                  value = { source = dotfilesDir + "/${childRel}"; };
-                } ]
+                if filetype == "directory"
+                then recursivelyGetFiles childRelativePath
+                else
+                  # Only files become home.file entries; directories are implicit
+                  let
+                    pathParts = lib.splitString "/" childRelativePath;
+                    top   = lib.head pathParts;
+                    rest  = lib.tail pathParts;
+                    topWithDot = if prefixDot then ".${top}" else top;
+                    homePath = lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
+                  in
+                    [
+                      {
+                        name  = homePath;
+                        value = { source = dotfilesDir + "/${childRelativePath}"; };
+                      }
+                    ]
             )
             (lib.attrNames entries);
     in
-      lib.listToAttrs (recCollect "");
+      lib.listToAttrs (recursivelyGetFiles "");
 in
 {
   home.stateVersion = "25.11";
