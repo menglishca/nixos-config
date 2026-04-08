@@ -18,7 +18,6 @@
     xfce4-docklike-plugin
     xfce4-panel-profiles
     xfce4-pulseaudio-plugin
-    networkmanager
   ];
 
   # Remove XFCE apps you do not want when enabling the desktop.

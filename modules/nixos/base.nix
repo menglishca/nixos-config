@@ -35,6 +35,9 @@
   system.stateVersion = lib.mkDefault "25.11";
   time.timeZone = "America/St_Johns";
 
+  networking.networkmanager.enable = true;
+  networking.useDHCP = true;
+
   allowedUnfreePackages = [
     "anydesk"
     "vscode"
