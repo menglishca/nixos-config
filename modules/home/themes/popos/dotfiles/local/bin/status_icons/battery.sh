@@ -30,5 +30,5 @@ fi
 
 ~/.local/bin/status_icons/build_icon.sh \
   --pill "#39546f" \
-  --segment "icon_placeholder" --color "${COLOR}" \
+  --segment "${ICON}" --color "${COLOR}" \
   --segment " ${BATTERY}%" --color "#ffffff"
