@@ -4,7 +4,9 @@
 let
   populateDotfiles =
     { dotfilesDir, prefixDot ? true }:
+
     let
+      # Recursive helper
       recursivelyGetFiles = relativePath:
         let
           dotfilesSourcePath = if relativePath == "" then dotfilesDir else dotfilesDir + "/${relativePath}";
@@ -23,13 +25,12 @@ let
                 if filetype == "directory"
                 then recursivelyGetFiles childRelativePath
                 else
-                  # Only files become home.file entries; directories are implicit
                   let
-                    pathParts = lib.splitString "/" childRelativePath;
-                    top   = lib.head pathParts;
-                    rest  = lib.tail pathParts;
+                    pathParts  = lib.splitString "/" childRelativePath;
+                    top        = lib.head pathParts;
+                    rest       = lib.tail pathParts;
                     topWithDot = if prefixDot then ".${top}" else top;
-                    homePath = lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
+                    homePath   = lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
                   in
                     [
                       {
@@ -40,7 +41,10 @@ let
             )
             (lib.attrNames entries);
     in
-      lib.listToAttrs (recursivelyGetFiles "");
+      # Top-level guard: return {} if the root dir is missing
+      if !builtins.pathExists dotfilesDir
+      then {}
+      else lib.listToAttrs (recursivelyGetFiles "");
 in
 {
   home.stateVersion = "25.11";
