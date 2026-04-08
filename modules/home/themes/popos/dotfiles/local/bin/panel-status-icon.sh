@@ -3,8 +3,7 @@ set -euo pipefail
 
 case "${1:-}" in
   battery)
-    echo $(./statusIcons/battery.sh);
-    esac
+    ./statusIcons/battery.sh;
     ;;
   wifi)
     WIFI_DEV=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
