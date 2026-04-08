@@ -52,7 +52,10 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-CONTENT="${SEGMENTS[@]}"
+CONTENT=""
+for SEG in "${SEGMENTS[@]}"; do
+  CONTENT="${CONTENT}${SEG}"
+done
 
 echo -e "<txt>${CONTENT}</txt>"
 
