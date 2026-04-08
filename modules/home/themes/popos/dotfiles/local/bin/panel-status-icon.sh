@@ -3,31 +3,9 @@ set -euo pipefail
 
 case "${1:-}" in
   battery)
-    BAT=$(upower -e | grep -m1 'BAT' || true)
-    if [ -z "${BAT}" ]; then
-      # No battery present: hide icon
-      # Or: exit 0 to emit nothing at all
-      # echo "<txt class=\"hidden\"></txt>"
-      exit 0
-    fi
-
-    PCT=$(upower -i "$BAT" | awk '/percentage/ {gsub(/%/,"",$2); print $2}')
-    STATE=$(upower -i "$BAT" | awk '/state/ {print $2}')
-
-    if   [ "$PCT" -le 5 ];   then ICON=$(printf '\uf244')
-    elif [ "$PCT" -le 25 ];  then ICON=$(printf '\uf243')
-    elif [ "$PCT" -le 50 ];  then ICON=$(printf '\uf242')
-    elif [ "$PCT" -le 75 ];  then ICON=$(printf '\uf241')
-    else                          ICON=$(printf '\uf240')
-    fi
-
-    if [ "$STATE" = "charging" ]; then
-      ICON=$(printf '\uf1e6')
-    fi
-
-    echo "<txt>${ICON}</txt>"
+    echo $(./statusIcons/battery.sh);
+    esac
     ;;
-
   wifi)
     WIFI_DEV=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
     if [ -z "${WIFI_DEV}" ]; then
