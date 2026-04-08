@@ -20,4 +20,4 @@ case "$role" in
     ;;
 esac
 
-echo "${icon}"
+echo "<txt>  <icon>${icon}  </icon></txt>"
