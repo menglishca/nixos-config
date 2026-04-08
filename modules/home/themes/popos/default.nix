@@ -185,7 +185,7 @@ in
         "plugins/plugin-8" = "genmon";
         "plugins/plugin-8/command" = "/home/matthew/.local/bin/panel-status-icon.sh battery";
         "plugins/plugin-8/period" = 5;
-        "plugins/plugin-8/use_label" = true;
+        "plugins/plugin-8/use_label" = false;
         "plugins/plugin-8/use_markup" = true;
         "plugins/plugin-8/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh battery";
 
@@ -193,7 +193,7 @@ in
         "plugins/plugin-9" = "genmon";
         "plugins/plugin-9/command" = "/home/matthew/.local/bin/panel-status-icon.sh wifi";
         "plugins/plugin-9/period" = 5;
-        "plugins/plugin-9/use_label" = true;
+        "plugins/plugin-9/use_label" = false;
         "plugins/plugin-9/use_markup" = true;
         "plugins/plugin-9/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh wifi";
 
@@ -201,7 +201,7 @@ in
         "plugins/plugin-10" = "genmon";
         "plugins/plugin-10/command" = "/home/matthew/.local/bin/panel-status-icon.sh sound";
         "plugins/plugin-10/period" = 5;
-        "plugins/plugin-10/use_label" = true;
+        "plugins/plugin-10/use_label" = false;
         "plugins/plugin-10/use_markup" = true;
         "plugins/plugin-10/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh sound";
 
@@ -209,7 +209,7 @@ in
         "plugins/plugin-11" = "genmon";
         "plugins/plugin-11/command" = "/home/matthew/.local/bin/panel-status-icon.sh power";
         "plugins/plugin-11/period" = 5;
-        "plugins/plugin-11/use_label" = true;
+        "plugins/plugin-11/use_label" = false;
         "plugins/plugin-11/use_markup" = true;
         "plugins/plugin-11/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh power";
 
