@@ -163,6 +163,7 @@ in
     ############################
     # XFCE panel config
     ############################
+    xfconf.enable = true;
     xfconf.settings = {
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
