@@ -37,11 +37,11 @@ while [ $# -gt 0 ]; do
             done
 
             if [ -n "$COLOR" ] ; then
-                SEGMENT="<b>${TEXT}</b>";
+                SEGMENT="<span foreground=\"${COLOR}\">${TEXT}</span>";
             elif [ "$BOLD" -eq 1 ]; then
                 SEGMENT="<b>${TEXT}</b>";
             else
-                SEGMENT="<span>$TEXT</span>";
+                SEGMENT="$TEXT";
             fi
 
             SEGMENTS+=("$SEGMENT")
@@ -52,23 +52,20 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-CONTENT=""
-for SEG in "${SEGMENTS[@]}"; do
-  CONTENT="${CONTENT}${SEG}"
-done
+CONTENT="${SEGMENTS[*]}"
 
 echo -e "<txt>${CONTENT}</txt>"
 
 if [ -n "$PILL_COLOR" ]; then
   [ -z "$PADDING" ] && PADDING=10
 
-  CSS="<css>.genmon_valuebutton {
-    background-color: ${PILL_COLOR};
-    padding-left: ${PADDING}px;
-    padding-right: ${PADDING}px;
-    font-weight: bold;
-  }
-  </css>"
+  CSS="<css>.genmon_value, .genmon_valuebutton {
+        background-color: ${PILL_COLOR};
+        padding-left: ${PADDING}px;
+        padding-right: ${PADDING}px;
+        font-weight: bold;
+    }
+</css>"
 
   echo -e "${CSS}"
 fi
