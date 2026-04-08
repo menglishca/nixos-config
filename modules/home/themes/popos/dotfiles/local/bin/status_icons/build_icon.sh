@@ -60,11 +60,11 @@ if [ -n "$PILL_COLOR" ]; then
     # Default padding = 10 if pill is used and padding not specified
     [ -z "$PADDING" ] && PADDING=10
     cat <<EOF
-        <css>.genmon_valuebutton {
-            background-color: ${PILL_COLOR};
-            padding-left: ${PADDING}px;
-            padding-right: ${PADDING}px;
-            font-weight: bold;
-        }</css>
+<css>.genmon_valuebutton {
+  background-color: ${PILL_COLOR};
+  padding-left: ${PADDING}px;
+  padding-right: ${PADDING}px;
+  font-weight: bold;
+}</css>
     EOF
 fi
