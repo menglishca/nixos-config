@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || exit 0)
+cd "$REPO_ROOT"
+
+DETECT_SCRIPT="plumbing/scripts/detect-dotfile-problems.sh"
+
+if [ -x "$DETECT_SCRIPT" ]; then
+  "$DETECT_SCRIPT"
+else
+  echo "pre-commit: $DETECT_SCRIPT not found or not executable" >&2
+fi
