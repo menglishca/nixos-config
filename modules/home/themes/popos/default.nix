@@ -21,9 +21,24 @@ let
     "plugins/plugin-${toString id}/expand" = true;
     "plugins/plugin-${toString id}/style" = 0;
   };
+
+  genmonPanelEntry =
+    { id, arg }:
+    let
+      base = "plugins/plugin-${toString id}";
+    in {
+      "${base}" = "genmon";
+      "${base}/command" = "/home/matthew/.local/bin/panel-status-icon.sh ${arg}";
+      "${base}/update-period" = 300000;
+      "${base}/use-label" = false;
+      "${base}/font" = "SauceCodePro Nerd Font 11";
+      "${base}/use-markup" = true;
+      "${base}/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh ${arg}";
+    };
+
   hexToRgba = hex: alpha:
     let
-      h   = lib.removePrefix "#" hex;
+      h    = lib.removePrefix "#" hex;
       rHex = builtins.substring 0 2 h;
       gHex = builtins.substring 2 2 h;
       bHex = builtins.substring 4 2 h;
@@ -50,20 +65,20 @@ in
   config = mkIf (config.home.theme == "PopOS") {
 
     home.file = themeHomeFiles // {
-        ".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
+      ".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
         pkgs.writeText "docklike-${toString dockConfig.id}.rc" ''
-            [user]
-            indicatorStyle=4
-            inactiveIndicatorStyle=4
-            indicatorOrientation=1
-            indicatorColor=${dockConfig.activeIndicatorColor}
-            inactiveColor=${dockConfig.inactiveIndicatorColor}
-            pinned=firefox;
-            onlyDisplayVisible=true
-            forceIconSize=true
-            iconSize=32
+          [user]
+          indicatorStyle=4
+          inactiveIndicatorStyle=4
+          indicatorOrientation=1
+          indicatorColor=${dockConfig.activeIndicatorColor}
+          inactiveColor=${dockConfig.inactiveIndicatorColor}
+          pinned=firefox;
+          onlyDisplayVisible=true
+          forceIconSize=true
+          iconSize=32
         '';
-        "pictures/current-wallpaper.jpg".source = ../../wallpapers/brain.jpg;
+      "pictures/current-wallpaper.jpg".source = ../../wallpapers/brain.jpg;
     };
 
     ############################
@@ -74,7 +89,6 @@ in
 
       polarity = if themeConfig.variant == "dark" then "dark" else "light";
 
-      # Example base16 scheme – replace with a real PopOS-like scheme
       base16Scheme = {
         base00 = "1a1444";
         base01 = "2e418d";
@@ -96,30 +110,28 @@ in
 
       fonts = {
         sizes = {
-          applications = 10;  # GTK apps, window titles (if using GTK theme)
-          terminal     = 11;  # Alacritty etc.
-          desktop      = 10;  # panel, menus
+          applications = 10;
+          terminal     = 11;
+          desktop      = 10;
         };
       };
 
-      # Let PopOS decide which targets Stylix themes
       targets = {
-        gtk.enable      = true;
-        gnome.enable    = false;
+        gtk.enable       = true;
+        gnome.enable     = false;
         alacritty.enable = true;
         firefox = {
           enable       = true;
           profileNames = [ "main" ];
         };
         rofi = {
-          enable  = true;
-          fonts.enable   = true;
+          enable        = true;
+          fonts.enable  = true;
           opacity.enable = true;
         };
         vscode.enable = true;
       };
 
-      # Extra GTK CSS for the dock
       targets.gtk.extraCss = ''
         /* Docklike plugin padding tweak */
         #docklike-plugin {
@@ -149,88 +161,67 @@ in
     ];
 
     ############################
-    # XFCE panel config (unchanged logic)
+    # XFCE panel config
     ############################
     xfconf.settings = {
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
         "backdrop/single-workspace-mode" = true;
-        "backdrop/screen0/monitor0/workspace0/last-image" = "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
-        "backdrop/screen0/monitorVirtual-1/workspace0/last-image" = "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
+        "backdrop/screen0/monitor0/workspace0/last-image" =
+          "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
+        "backdrop/screen0/monitorVirtual-1/workspace0/last-image" =
+          "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
       };
-      xfce4-panel = {
-        "panels" = [ 1 2 ];
 
-        # Top panel
-        "panels/panel-1/position"      = "p=6;x=0;y=0";
-        "panels/panel-1/size"          = 28;
-        "panels/panel-1/length"        = 100;
-        "panels/panel-1/length-adjust" = true;
-        "panels/panel-1/mode"          = 0;
-        "panels/panel-1/position-locked"  = true;
-        "panels/panel-1/background-style" = 1;
-        "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
-        "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 9 10 11 ];
+      xfce4-panel =
+        {
+          "panels" = [ 1 2 ];
 
-        "plugins/plugin-1" = "whiskermenu";
-        "plugins/plugin-3" = "clock";
-        "plugins/plugin-3/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
+          # Top panel
+          "panels/panel-1/position"         = "p=6;x=0;y=0";
+          "panels/panel-1/size"             = 28;
+          "panels/panel-1/length"           = 100;
+          "panels/panel-1/length-adjust"    = true;
+          "panels/panel-1/mode"             = 0;
+          "panels/panel-1/position-locked"  = true;
+          "panels/panel-1/background-style" = 1;
+          "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
+          "panels/panel-1/plugin-ids"       = [ 1 2 3 4 5 6 7 8 9 10 11 ];
 
-        "plugins/plugin-5" = "systray";
-        "plugins/plugin-6" = "power-manager-plugin";
-        "plugins/plugin-7" = "launcher";
-        "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
+          "plugins/plugin-1" = "whiskermenu";
+          "plugins/plugin-3" = "clock";
+          "plugins/plugin-3/digital-time-format" =
+            "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
 
-        # Battery icon
-        "plugins/plugin-8" = "genmon";
-        "plugins/plugin-8/command" = "/home/matthew/.local/bin/panel-status-icon.sh battery";
-        "plugins/plugin-8/period" = 5;
-        "plugins/plugin-8/use_label" = false;
-        "plugins/plugin-8/use_markup" = true;
-        "plugins/plugin-8/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh battery";
+          "plugins/plugin-5" = "systray";
+          "plugins/plugin-6" = "power-manager-plugin";
+          "plugins/plugin-7" = "launcher";
+          "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
 
-        # Wi-Fi icon
-        "plugins/plugin-9" = "genmon";
-        "plugins/plugin-9/command" = "/home/matthew/.local/bin/panel-status-icon.sh wifi";
-        "plugins/plugin-9/period" = 5;
-        "plugins/plugin-9/use_label" = false;
-        "plugins/plugin-9/use_markup" = true;
-        "plugins/plugin-9/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh wifi";
+          # Bottom panel (dock)
+          "panels/panel-2/position"        = "p=10;x=0;y=0";
+          "panels/panel-2/size"            = 46;
+          "panels/panel-2/length"          = 100;
+          "panels/panel-2/length-adjust"   = true;
+          "panels/panel-2/mode"            = 0;
+          "panels/panel-2/position-locked" = true;
+          "panels/panel-2/autohide-behavior" = 0;
+          "panels/panel-2/background-style"  = 1;
+          "panels/panel-2/background-rgba"   = hexToRgba "#33302f" 0.5;
 
-        # Sound icon
-        "plugins/plugin-10" = "genmon";
-        "plugins/plugin-10/command" = "/home/matthew/.local/bin/panel-status-icon.sh sound";
-        "plugins/plugin-10/period" = 5;
-        "plugins/plugin-10/use_label" = false;
-        "plugins/plugin-10/use_markup" = true;
-        "plugins/plugin-10/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh sound";
-
-        # Power icon
-        "plugins/plugin-11" = "genmon";
-        "plugins/plugin-11/command" = "/home/matthew/.local/bin/panel-status-icon.sh power";
-        "plugins/plugin-11/period" = 5;
-        "plugins/plugin-11/use_label" = false;
-        "plugins/plugin-11/use_markup" = true;
-        "plugins/plugin-11/onclick" = "/home/matthew/.local/bin/panel-quick-menu.sh power";
-
-        # Bottom panel (dock)
-        "panels/panel-2/position"      = "p=10;x=0;y=0";
-        "panels/panel-2/size"          = 46;
-        "panels/panel-2/length"        = 100;
-        "panels/panel-2/length-adjust" = true;
-        "panels/panel-2/mode"          = 0;
-        "panels/panel-2/position-locked"  = true;
-        "panels/panel-2/autohide-behavior" = 0;
-        "panels/panel-2/background-style" = 1;
-        "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 0.5;
-
-        "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
-        "plugins/plugin-${toString dockConfig.id}" = "docklike";
-      }
-      // mkSeparator 2
-      // mkSeparator 4
-      // mkSeparator 20
-      // mkSeparator 22;
+          "panels/panel-2/plugin-ids" = [ 20 dockConfig.id 22 ];
+          "plugins/plugin-${toString dockConfig.id}" = "docklike";
+        }
+        # Separators
+        // mkSeparator 2
+        // mkSeparator 4
+        // mkSeparator 20
+        // mkSeparator 22
+        # Genmon icons
+        // genmonPanelEntry { id = 8;  arg = "battery"; }
+        // genmonPanelEntry { id = 9;  arg = "wifi"; }
+        // genmonPanelEntry { id = 10; arg = "sound"; }
+        // genmonPanelEntry { id = 11; arg = "power"; };
     };
   };
 }
