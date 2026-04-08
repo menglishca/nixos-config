@@ -66,5 +66,5 @@ if [ -n "$PILL_COLOR" ]; then
   padding-right: ${PADDING}px;
   font-weight: bold;
 }</css>
-    EOF
+EOF
 fi
