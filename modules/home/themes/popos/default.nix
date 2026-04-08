@@ -141,6 +141,11 @@ in
           padding-left: 9px;
           padding-right: 9px;
         }
+
+        .gemon_value.hidden {
+          padding-left: 0px;
+          padding-right: 0px;
+        }
       '';
     };
 
@@ -162,6 +167,10 @@ in
 
       pop-gtk-theme
       pop-icon-theme
+
+      upower
+      networkmanager
+      pamixer
     ];
 
     ############################
