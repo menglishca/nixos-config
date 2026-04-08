@@ -74,7 +74,7 @@ in
             iconSize=32
         '';
         "pictures/current-wallpaper.jpg".source = ../wallpapers/brain.jpg;
-    }
+    };
 
     ############################
     # Stylix as plumbing, PopOS as source of truth
