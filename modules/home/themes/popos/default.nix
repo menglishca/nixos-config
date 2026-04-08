@@ -1,17 +1,13 @@
 # modules/home/themes/popos.nix
-{ config, lib, pkgs, populateDotfiles, ... }:
+{ config, lib, pkgs, mkDotfiles, ... }:
 
 let
   inherit (lib) mkOption types mkIf;
 
   themeConfig = config.home.themeOptions.PopOS;
-  themeDotfilesDir = builtins.path {
+  themeHomeFiles = mkDotfiles {
     path = ./dotfiles;
     name = "popos-dotfiles";
-  };
-  themeHomeFiles = populateDotfiles {
-    dotfilesDir = themeDotfilesDir;
-    prefixDot   = true;
   };
 
   dockConfig = {

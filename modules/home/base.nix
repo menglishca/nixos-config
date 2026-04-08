@@ -2,11 +2,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  populateDotfiles =
-    { dotfilesDir, prefixDot ? true }:
-
+  populateDotfiles = { dotfilesDir, prefixDot ? true }:
     let
-      # Recursive helper
       recursivelyGetFiles = relativePath:
         let
           dotfilesSourcePath = if relativePath == "" then dotfilesDir else dotfilesDir + "/${relativePath}";
@@ -41,14 +38,19 @@ let
             )
             (lib.attrNames entries);
     in
-      # Top-level guard: return {} if the root dir is missing
-      if !builtins.pathExists dotfilesDir
-      then {}
-      else lib.listToAttrs (recursivelyGetFiles "");
+      lib.listToAttrs (recursivelyGetFiles "");
+  mkDotfiles =  { path, name, prefixDot ? true }:
+    if !builtins.pathExists path then
+      {}
+    else
+      let
+        dotfilesDir = builtins.path { inherit path name; };
+      in
+        populateDotfiles { inherit dotfilesDir prefixDot; };
 in
 {
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;
 
-  _module.args.populateDotfiles = populateDotfiles;
+  _module.args.mkDotfiles = mkDotfiles;
 }

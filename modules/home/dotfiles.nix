@@ -1,15 +1,10 @@
 # modules/home/dotfiles.nix
-{ config, lib, pkgs, populateDotfiles, ... }:
+{ config, lib, pkgs, mkDotfiles, ... }:
 
 let
-  dotfilesDir = builtins.path {
+  globalHomeFiles = mkDotfiles {
     path = ./dotfiles;
     name = "home-dotfiles";
-  };
-
-  globalHomeFiles = populateDotfiles {
-    inherit dotfilesDir;
-    prefixDot = true;
   };
 in
 {
