@@ -137,6 +137,10 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
+        .genmon_value {
+          padding-left: 4px;
+          padding-right: 4px;
+        }
       '';
     };
 
