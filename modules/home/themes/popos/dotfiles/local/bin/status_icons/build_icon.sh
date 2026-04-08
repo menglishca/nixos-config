@@ -54,17 +54,17 @@ done
 
 CONTENT="${SEGMENTS[*]}"
 
-echo "<txt>${CONTENT}</txt>"
+echo -e s"<txt>${CONTENT}</txt>"
 
 if [ -n "$PILL_COLOR" ]; then
-    # Default padding = 10 if pill is used and padding not specified
-    [ -z "$PADDING" ] && PADDING=10
-    cat <<EOF
-<css>.genmon_valuebutton {
+  [ -z "$PADDING" ] && PADDING=10
+
+  CSS="<css>.genmon_valuebutton {
   background-color: ${PILL_COLOR};
   padding-left: ${PADDING}px;
   padding-right: ${PADDING}px;
   font-weight: bold;
-}</css>
-EOF
+}</css>"
+
+  echo -e "${CSS}"
 fi
