@@ -36,7 +36,6 @@
   time.timeZone = "America/St_Johns";
 
   networking.networkmanager.enable = true;
-  networking.useDHCP = true;
 
   allowedUnfreePackages = [
     "anydesk"
