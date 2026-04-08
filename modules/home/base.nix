@@ -24,13 +24,13 @@ let
               if typ == "directory"
               then recCollect childRel
               else
+                # Only files become home.file entries; directories are implicit
                 let
                   parts = lib.splitString "/" childRel;
                   top   = lib.head parts;
                   rest  = lib.tail parts;
 
-                  topWithDot =
-                    if prefixDot then ".${top}" else top;
+                  topWithDot = if prefixDot then ".${top}" else top;
 
                   homePath =
                     lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
@@ -45,11 +45,8 @@ let
       lib.listToAttrs (recCollect "");
 in
 {
-  # Shared Home Manager defaults for all users
   home.stateVersion = "25.11";
-
   programs.home-manager.enable = true;
 
-  # Expose the helper via config so other modules can use it.
   _module.args.populateDotfiles = populateDotfiles;
 }

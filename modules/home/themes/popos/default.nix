@@ -5,7 +5,10 @@ let
   inherit (lib) mkOption types mkIf;
 
   themeConfig = config.home.themeOptions.PopOS;
-  themeDotfilesDir = ./dotfiles;
+  themeDotfilesDir = builtins.path {
+    path = ./dotfiles;
+    name = "popos-dotfiles";
+  };
   themeHomeFiles = populateDotfiles {
     dotfilesDir = themeDotfilesDir;
     prefixDot   = true;
