@@ -20,4 +20,4 @@ case "$role" in
     ;;
 esac
 
-echo "<span font='SauceCodePro Nerd Font 11'>$icon</span>"
+echo "<txt><span font='SauceCodePro Nerd Font 11'>$icon</span></txt>"

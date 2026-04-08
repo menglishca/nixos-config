@@ -2,15 +2,15 @@
 
 {
   # XFCE + X11 + LightDM setup.
-  services.xserver = {
-    enable = true;
-
+  services = {
+    xserver = {
+      enable = true;
+      desktopManager.xfce.enable = true;
+    };
     displayManager = {
       lightdm.enable = true;
       defaultSession = "xfce";
     };
-
-    desktopManager.xfce.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
