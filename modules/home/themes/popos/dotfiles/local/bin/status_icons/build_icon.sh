@@ -52,7 +52,7 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-CONTENT="${SEGMENTS[*]}"
+CONTENT="${SEGMENTS[@]}"
 
 echo -e "<txt>${CONTENT}</txt>"
 
@@ -64,8 +64,8 @@ if [ -n "$PILL_COLOR" ]; then
     padding-left: ${PADDING}px;
     padding-right: ${PADDING}px;
     font-weight: bold;
-}
-</css>"
+  }
+  </css>"
 
   echo -e "${CSS}"
 fi
