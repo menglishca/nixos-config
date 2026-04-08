@@ -195,6 +195,7 @@ in
 
           "plugins/plugin-1" = "whiskermenu";
           "plugins/plugin-3" = "clock";
+          "plugins/plugin-3/style" = 0;
           "plugins/plugin-3/digital-time-format" =
             "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
 
