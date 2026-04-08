@@ -73,14 +73,14 @@ in
             forceIconSize=true
             iconSize=32
         '';
-        "pictures/current-wallpaper.jpg".source = ../wallpapers/brain.jpg;
+        "pictures/current-wallpaper.jpg".source = ../../wallpapers/brain.jpg;
     };
 
     ############################
     # Stylix as plumbing, PopOS as source of truth
     ############################
     stylix = {
-      image = ../wallpapers/brain.jpg;
+      image = ../../wallpapers/brain.jpg;
 
       polarity =
         if themeConfig.variant == "dark" then "dark" else "light";
