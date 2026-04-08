@@ -15,7 +15,7 @@
 
   # Remove XFCE apps you do not want when enabling the desktop.
   environment.xfce.excludePackages = [
-    pkgs.xfce.xfce4-terminal
-    pkgs.xfce.mousepad
+    pkgs.xfce4-terminal
+    pkgs.mousepad
   ];
 }

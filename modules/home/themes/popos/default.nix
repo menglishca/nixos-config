@@ -5,6 +5,20 @@ let
   inherit (lib) mkOption types mkIf;
 
   themeConfig = config.home.themeOptions.PopOS;
+  themeDotfilesDir = ./dotfiles;
+  themeEntries = builtins.readDir themeDotfilesDir;
+
+  toHomeName = name: ".${name}";
+
+  themeHomeFiles =
+    lib.listToAttrs (map
+      (name: {
+        name = toHomeName name;
+        value = {
+          source = "${themeDotfilesDir}/${name}";
+        };
+      })
+      (lib.attrNames themeEntries));
 
   dockConfig = {
     id = 21;
@@ -45,12 +59,26 @@ in
   # Only apply when this theme is selected
   config = mkIf (config.home.theme == "PopOS") {
 
+    home.file = themeHomeFiles // {
+        ".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
+        pkgs.writeText "docklike-${toString dockConfig.id}.rc" ''
+            [user]
+            indicatorStyle=4
+            inactiveIndicatorStyle=4
+            indicatorOrientation=1
+            indicatorColor=${dockConfig.activeIndicatorColor}
+            inactiveColor=${dockConfig.inactiveIndicatorColor}
+            pinned=firefox;
+            onlyDisplayVisible=true
+            forceIconSize=true
+            iconSize=32
+        '';
+        "pictures/current-wallpaper.jpg".source = ../wallpapers/brain.jpg;
+    }
+
     ############################
     # Stylix as plumbing, PopOS as source of truth
     ############################
-
-    home.file."pictures/current-wallpaper.jpg".source = ../wallpapers/brain.jpg;
-    # Choose wallpaper, polarity, and base16 scheme here.
     stylix = {
       image = ../wallpapers/brain.jpg;
 
@@ -115,6 +143,8 @@ in
     # Packages (XFCE + theming)
     ############################
     home.packages = with pkgs; [
+      xfce4-genmon-plugin
+      xfce4-docklike-plugin
       xfce4-power-manager
       xfce4-pulseaudio-plugin
       xfce4-notifyd
@@ -181,63 +211,5 @@ in
       // mkSeparator 20
       // mkSeparator 22;
     };
-
-    
-    ############################
-    # Docklike plugin config
-    ############################
-    home.file.".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
-      pkgs.writeText "docklike-${toString dockConfig.id}.rc" ''
-        [user]
-        indicatorStyle=4
-        inactiveIndicatorStyle=4
-        indicatorOrientation=1
-        indicatorColor=${dockConfig.activeIndicatorColor}
-        inactiveColor=${dockConfig.inactiveIndicatorColor}
-        pinned=firefox;
-        onlyDisplayVisible=true
-        forceIconSize=true
-        iconSize=32
-      '';
-
-    ############################
-    # Pop-style quick menu
-    ############################
-    home.file.".local/bin/pop-quick-menu" = {
-      text = ''
-        #!/usr/bin/env bash
-        choice=$(printf '%s\n' \
-          "  Sound" \
-          "  Bluetooth" \
-          "  Night Light" \
-          "  Settings" \
-          "⏻  Power…" \
-          | rofi -dmenu -p "Quick Settings")
-
-        case "$choice" in
-          "  Sound")
-            pavucontrol >/dev/null 2>&1 & ;;
-          "  Bluetooth")
-            rofi-bluetooth >/dev/null 2>&1 & ;;
-          "  Night Light")
-            pkill -x redshift || redshift -O 4500K >/dev/null 2>&1 & ;;
-          "  Settings")
-            xfce4-settings-manager >/dev/null 2>&1 & ;;
-          "⏻  Power…")
-            rofi -show power-menu -modi power-menu:rofi-power-menu ;;
-        esac
-      '';
-      executable = true;
-    };
-
-    home.file.".local/share/applications/pop-quick-menu.desktop".text = ''
-      [Desktop Entry]
-      Type=Application
-      Name=Quick Settings
-      Comment=PopOS-style quick settings menu
-      Exec=/home/matthew/.local/bin/pop-quick-menu
-      Icon=preferences-system
-      Terminal=false
-    '';
   };
 }

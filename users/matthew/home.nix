@@ -6,6 +6,7 @@
     ../../modules/home/programs
     ../../modules/home/xdg.nix
     ../../modules/home/theme.nix
+    ../../modules/home/dotfiles.nix
   ];
 
   home = {
