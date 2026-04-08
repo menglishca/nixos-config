@@ -7,7 +7,7 @@ case "${1:-}" in
     if [ -z "${BAT}" ]; then
       # No battery present: hide icon
       # Or: exit 0 to emit nothing at all
-      echo "<txt class=\"hidden\"></txt>"
+      # echo "<txt class=\"hidden\"></txt>"
       exit 0
     fi
 
@@ -31,12 +31,12 @@ case "${1:-}" in
   wifi)
     WIFI_DEV=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
     if [ -z "${WIFI_DEV}" ]; then
-      echo "<txt class=\"hidden\"></txt>"
+      # echo "<txt class=\"hidden\"></txt>"
       exit 0
     fi
 
     if nmcli -t -f TYPE,STATE con show --active | awk -F: '$1=="ethernet" && $2=="activated"{found=1} END{exit !found}'; then
-      echo "<txt class=\"hidden\"></txt>"
+      # echo "<txt class=\"hidden\"></txt>"
       exit 0
     fi
 
@@ -45,18 +45,16 @@ case "${1:-}" in
     if [ "$STATE" -lt 100 ]; then
       # Disconnected
       ICON=$(printf '\U000F092E')   # example: some wifi-off glyph; replace with your choice
-      echo "<txt>${ICON}</txt>"
-      exit 0
-    fi
+    else
+      SIGNAL=$(nmcli -f IN-USE,SIGNAL dev wifi | awk '$1=="*"{print $2}')
+      SIGNAL=${SIGNAL:-0}
 
-    SIGNAL=$(nmcli -f IN-USE,SIGNAL dev wifi | awk '$1=="*"{print $2}')
-    SIGNAL=${SIGNAL:-0}
-
-    # Replace \ufxyz with glyphs you actually want; avoid surrogate pairs
-    if   [ "$SIGNAL" -le 25 ];  then ICON=$(printf '\U000F091F')  # weak
-    elif [ "$SIGNAL" -le 50 ];  then ICON=$(printf '\U000F0922')  # medium
-    elif [ "$SIGNAL" -le 75 ];  then ICON=$(printf '\U000F0925')  # good
-    else                             ICON=$(printf '\U000F0928')  # excellent
+      # Replace \ufxyz with glyphs you actually want; avoid surrogate pairs
+      if   [ "$SIGNAL" -le 25 ];  then ICON=$(printf '\U000F091F')  # weak
+      elif [ "$SIGNAL" -le 50 ];  then ICON=$(printf '\U000F0922')  # medium
+      elif [ "$SIGNAL" -le 75 ];  then ICON=$(printf '\U000F0925')  # good
+      else                             ICON=$(printf '\U000F0928')  # excellent
+      fi
     fi
 
     echo "<txt>${ICON}</txt>"
