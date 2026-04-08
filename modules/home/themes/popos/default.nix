@@ -6,19 +6,10 @@ let
 
   themeConfig = config.home.themeOptions.PopOS;
   themeDotfilesDir = ./dotfiles;
-  themeEntries = builtins.readDir themeDotfilesDir;
-
-  toHomeName = name: ".${name}";
-
-  themeHomeFiles =
-    lib.listToAttrs (map
-      (name: {
-        name = toHomeName name;
-        value = {
-          source = "${themeDotfilesDir}/${name}";
-        };
-      })
-      (lib.attrNames themeEntries));
+  themeHomeFiles = config.home.mkDotfilesHomeFiles {
+    dotfilesDir = themeDotfilesDir;
+    prefixDot   = true;
+  };
 
   dockConfig = {
     id = 21;

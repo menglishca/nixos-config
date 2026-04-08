@@ -2,7 +2,7 @@
 
 {
   # Desktop-wide XFCE plugins and extras.
-  environment.systemPackages = with pkgs.xfce; [
+  environment.systemPackages = with pkgs; [
     xfce4-whiskermenu-plugin
     xfce4-docklike-plugin
     xfce4-panel-profiles
