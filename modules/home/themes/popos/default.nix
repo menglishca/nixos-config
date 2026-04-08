@@ -137,15 +137,6 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
-        .genmon_value {
-          padding-left: 9px;
-          padding-right: 9px;
-        }
-
-        .gemon_value.hidden {
-          padding-left: 0px;
-          padding-right: 0px;
-        }
       '';
     };
 

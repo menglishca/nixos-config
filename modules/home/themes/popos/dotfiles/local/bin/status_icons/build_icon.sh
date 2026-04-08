@@ -54,7 +54,7 @@ done
 
 CONTENT="${SEGMENTS[*]}"
 
-echo -e s"<txt>${CONTENT}</txt>"
+echo -e "<txt>${CONTENT}</txt>"
 
 if [ -n "$PILL_COLOR" ]; then
   [ -z "$PADDING" ] && PADDING=10
