@@ -51,5 +51,5 @@ in
   programs.home-manager.enable = true;
 
   # Expose the helper via config so other modules can use it.
-  lib.populateDotfiles = populateDotfiles;
+  _module.args.populateDotfiles = populateDotfiles;
 }

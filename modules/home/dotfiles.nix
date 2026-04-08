@@ -1,10 +1,10 @@
 # modules/home/dotfiles.nix
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, populateDotfiles, ... }:
 
 let
   dotfilesDir = ./dotfiles;
 
-  globalHomeFiles = config.lib.populateDotfiles {
+  globalHomeFiles = populateDotfiles {
     inherit dotfilesDir;
     prefixDot = true;  # "bin" -> ".bin"
   };
