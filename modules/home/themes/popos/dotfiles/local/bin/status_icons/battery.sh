@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BATTERY=30   #$(awk '{print $1}' /sys/class/power_supply/BAT*/capacity)
+BATTERY=40   #$(awk '{print $1}' /sys/class/power_supply/BAT*/capacity)
 CHARGING=0   # TODO: real value
 
 if [ "$BATTERY" -lt 5 ]; then
