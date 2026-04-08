@@ -60,11 +60,12 @@ if [ -n "$PILL_COLOR" ]; then
   [ -z "$PADDING" ] && PADDING=10
 
   CSS="<css>.genmon_valuebutton {
-  background-color: ${PILL_COLOR};
-  padding-left: ${PADDING}px;
-  padding-right: ${PADDING}px;
-  font-weight: bold;
-}</css>"
+        background-color: ${PILL_COLOR};
+        padding-left: ${PADDING}px;
+        padding-right: ${PADDING}px;
+        font-weight: bold;
+    }
+</css>"
 
   echo -e "${CSS}"
 fi
