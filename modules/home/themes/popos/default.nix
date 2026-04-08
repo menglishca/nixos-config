@@ -179,99 +179,43 @@ in
       };
 
       xfce4-panel =
-        let
-          # Helper to build a separator once
-          mkSep = id: mkSeparator id;
-        in
         {
-          # Panel IDs: 1 = left top, 2 = center top, 3 = right top, 4 = bottom dock
-          "panels" = [ 1 2 3 4 ];
+          "panels" = [ 1 2 ];
 
-          ########################
-          # Top-left panel (apps)
-          ########################
+          # Top panel
           "panels/panel-1/position"         = "p=6;x=0;y=0";
           "panels/panel-1/size"             = 28;
-          "panels/panel-1/length"           = 40;   # left 40%
-          "panels/panel-1/length-adjust"    = false;
+          "panels/panel-1/length"           = 100;
+          "panels/panel-1/length-adjust"    = true;
           "panels/panel-1/mode"             = 0;
           "panels/panel-1/position-locked"  = true;
           "panels/panel-1/background-style" = 1;
           "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
+          "panels/panel-1/plugin-ids"       = [ 1 2 3 4 5 6 7 8 9 10 11 ];
 
-          # e.g. whisker + maybe a launcher
-          "panels/panel-1/plugin-ids" = [ 1 2 ];
           "plugins/plugin-1" = "whiskermenu";
-          # optional separator on the right edge to push into center panel visually
-          "plugins/plugin-2" = "separator";
 
-          ########################
-          # Top-center panel (clock)
-          ########################
-          "panels/panel-2/position"         = "p=6;x=50;y=0";  # anchored center top
-          "panels/panel-2/size"             = 28;
-          "panels/panel-2/length"           = 20;   # narrow center strip
-          "panels/panel-2/length-adjust"    = false;
+          "plugins/plugin-5" = "systray";
+          "plugins/plugin-6" = "power-manager-plugin";
+          "plugins/plugin-7" = "launcher";
+          "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
+
+          "panels/panel-2/position" = "p=7;x=0;y=0";
+          "panels/panel-2/size" = 28;
+          "panels/panel-2/length" = 100;
+          "panels/panel-2/length-adjust"    = true;
           "panels/panel-2/mode"             = 0;
           "panels/panel-2/position-locked"  = true;
           "panels/panel-2/background-style" = 1;
-          "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 0.5;
+          "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 1.0;
+          "panels/panel-2/plugin-ids"       = [ 3 ];
 
-          # separators (left/right) + clock in middle
-          "panels/panel-2/plugin-ids" = [ 3 4 5 ];
-          "plugins/plugin-3" = "separator";
-          "plugins/plugin-3/expand" = true;
-          "plugins/plugin-3/style"  = 0;
-
-          "plugins/plugin-4" = "clock";
-          "plugins/plugin-4/style" = 0;
-          "plugins/plugin-4/digital-time-format" =
+          "plugins/plugin-3" = "clock";
+          "plugins/plugin-3/style" = 0;
+          "plugins/plugin-3/digital-time-format" =
             "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
 
-          "plugins/plugin-5" = "separator";
-          "plugins/plugin-5/expand" = true;
-          "plugins/plugin-5/style"  = 0;
-
-          ########################
-          # Top-right panel (status)
-          ########################
-          "panels/panel-3/position"         = "p=6;x=100;y=0";
-          "panels/panel-3/size"             = 28;
-          "panels/panel-3/length"           = 40;   # right 40%
-          "panels/panel-3/length-adjust"    = false;
-          "panels/panel-3/mode"             = 0;
-          "panels/panel-3/position-locked"  = true;
-          "panels/panel-3/background-style" = 1;
-          "panels/panel-3/background-rgba"  = hexToRgba "#33302f" 0.5;
-
-          # left separator, then genmon icons, tray, power, quick menu
-          "panels/panel-3/plugin-ids" = [ 6 7 8 9 10 11 12 ];
-
-          "plugins/plugin-6" = "separator";
-          "plugins/plugin-6/expand" = true;
-          "plugins/plugin-6/style"  = 0;
-
-          # genmon icons
-          # battery / wifi / sound / power
-          # (reuse your helper)
-        }
-        # genmon entries for plugins 7–10
-        // genmonPanelEntry { id = 7;  arg = "battery"; }
-        // genmonPanelEntry { id = 8;  arg = "wifi"; }
-        // genmonPanelEntry { id = 9;  arg = "sound"; }
-        // genmonPanelEntry { id = 10; arg = "power"; }
-        // {
-          # systray + power-manager + quick menu
-          "plugins/plugin-11" = "systray";
-          "plugins/plugin-12" = "power-manager-plugin";
-          "plugins/plugin-13" = "launcher";
-          "plugins/plugin-13/items" = [ "pop-quick-menu.desktop" ];
-        }
-        #
-        ########################
-        # Bottom dock on panel-4
-        ########################
-        // {
+          # Bottom panel (dock)
           "panels/panel-4/position"        = "p=10;x=0;y=0";
           "panels/panel-4/size"            = 46;
           "panels/panel-4/length"          = 100;
@@ -285,9 +229,15 @@ in
           "panels/panel-4/plugin-ids" = [ 20 dockConfig.id 22 ];
           "plugins/plugin-${toString dockConfig.id}" = "docklike";
         }
-        # bottom separators reused
+        # Separators
+        // mkSeparator 2
         // mkSeparator 20
-        // mkSeparator 22;
+        // mkSeparator 22
+        # Genmon icons
+        // genmonPanelEntry { id = 8;  arg = "battery"; }
+        // genmonPanelEntry { id = 9;  arg = "wifi"; }
+        // genmonPanelEntry { id = 10; arg = "sound"; }
+        // genmonPanelEntry { id = 11; arg = "power"; };
     };
   };
 }
