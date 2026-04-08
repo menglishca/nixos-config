@@ -4,7 +4,7 @@
 let
   dotfilesDir = ./dotfiles;
 
-  globalHomeFiles = config.home.mkDotfilesHomeFiles {
+  globalHomeFiles = config.lib.populateDotfiles {
     inherit dotfilesDir;
     prefixDot = true;  # "bin" -> ".bin"
   };

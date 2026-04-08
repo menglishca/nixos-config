@@ -6,7 +6,7 @@ let
 
   themeConfig = config.home.themeOptions.PopOS;
   themeDotfilesDir = ./dotfiles;
-  themeHomeFiles = config.home.mkDotfilesHomeFiles {
+  themeHomeFiles = config.lib.populateDotfiles {
     dotfilesDir = themeDotfilesDir;
     prefixDot   = true;
   };

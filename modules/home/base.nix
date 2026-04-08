@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  mkDotfilesHomeFiles =
+  populateDotfiles =
     { dotfilesDir, prefixDot ? true }:
     let
       recCollect = rootRel:
@@ -51,5 +51,5 @@ in
   programs.home-manager.enable = true;
 
   # Expose the helper via config so other modules can use it.
-  home.mkDotfilesHomeFiles = mkDotfilesHomeFiles;
+  lib.populateDotfiles = populateDotfiles;
 }
