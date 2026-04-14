@@ -206,7 +206,7 @@ in
           "panels/panel-${toString panels.topSystemPanel}/position-locked"  = true;
           "panels/panel-${toString panels.topSystemPanel}/background-style" = 1;
           "panels/panel-${toString panels.topSystemPanel}/background-rgba"  = hexToRgba "#33302f" 0.5;
-          "panels/panel-${toString panels.topSystemPanel}/plugin-ids"       = [ plugins.dock plugins.topPanelSeparator plugins.battery plugins.wifi plugins.sound plugins.power ];
+          "panels/panel-${toString panels.topSystemPanel}/plugin-ids"       = [ plugins.menu plugins.topPanelSeparator plugins.battery plugins.wifi plugins.sound plugins.power ];
 
           "panels/panel-${toString panels.topClockPanel}/position" = "p=6;x=0;y=0";
           "panels/panel-${toString panels.topClockPanel}/size" = 28;
