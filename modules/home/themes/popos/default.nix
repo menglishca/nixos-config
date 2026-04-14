@@ -195,7 +195,7 @@ in
 
       xfce4-panel =
         {
-          "panels" = [ 1 2 ];
+          "panels" = panels;
 
           # Top panel
           "panels/panel-${toString panels.topSystemPanel}/position"         = "p=6;x=0;y=0";
