@@ -195,7 +195,7 @@ in
 
       xfce4-panel =
         {
-          "panels" = [ panels.topSystemPanel panels.topClockPanel panels.bottomAppsPanel ];
+          "panels" = [ panels.topClockPanel panels.topSystemPanel panels.bottomAppsPanel ];
 
 
           "panels/panel-${toString panels.topClockPanel}/position" = "p=6;x=0;y=0";
