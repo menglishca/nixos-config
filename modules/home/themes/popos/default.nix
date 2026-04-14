@@ -195,7 +195,7 @@ in
 
       xfce4-panel =
         {
-          "panels" = panels;
+          "panels" = map (id: toString id) (builtins.attrValues panels);
 
           # Top panel
           "panels/panel-${toString panels.topSystemPanel}/position"         = "p=6;x=0;y=0";
