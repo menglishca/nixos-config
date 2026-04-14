@@ -10,10 +10,25 @@ let
     name = "popos-dotfiles";
   };
 
-  dockConfig = {
-    id = 21;
-    activeIndicatorColor   = "rgb(255, 255, 255)";
-    inactiveIndicatorColor = "rgb(192, 191, 188)";
+  plugins = {
+    dock = 1;
+    menu = 2;
+    battery = 3;
+    wifi = 4;
+    sound = 5;
+    power = 6;
+    topPanelSeparator = 7;
+    bottomLeftSeparator = 8;
+    bottomRightSeparator = 9;
+    clockPanelLeftSeparator = 10;
+    clockPanelRightSeparator = 11;
+    clock = 12;
+  };
+
+  panels = {
+    topSystemPanel = 1;
+    topClockPanel = 2;
+    bottomAppsPanel = 3;
   };
 
   mkSeparator = id: {
@@ -65,14 +80,14 @@ in
   config = mkIf (config.home.theme == "PopOS") {
 
     home.file = themeHomeFiles // {
-      ".config/xfce4/panel/docklike-${toString dockConfig.id}.rc".source =
-        pkgs.writeText "docklike-${toString dockConfig.id}.rc" ''
+      ".config/xfce4/panel/docklike-${toString plugins.dock}.rc".source =
+        pkgs.writeText "docklike-${toString plugins.dock}.rc" ''
           [user]
           indicatorStyle=4
           inactiveIndicatorStyle=4
           indicatorOrientation=1
-          indicatorColor=${dockConfig.activeIndicatorColor}
-          inactiveColor=${dockConfig.inactiveIndicatorColor}
+          indicatorColor="rgb(255, 255, 255)"
+          inactiveColor="rgb(192, 191, 188)"
           pinned=firefox;
           onlyDisplayVisible=true
           forceIconSize=true
@@ -183,61 +198,55 @@ in
           "panels" = [ 1 2 ];
 
           # Top panel
-          "panels/panel-1/position"         = "p=6;x=0;y=0";
-          "panels/panel-1/size"             = 28;
-          "panels/panel-1/length"           = 100;
-          "panels/panel-1/length-adjust"    = true;
-          "panels/panel-1/mode"             = 0;
-          "panels/panel-1/position-locked"  = true;
-          "panels/panel-1/background-style" = 1;
-          "panels/panel-1/background-rgba"  = hexToRgba "#33302f" 0.5;
-          "panels/panel-1/plugin-ids"       = [ 1 2 3 4 5 6 7 8 9 10 11 ];
+          "panels/panel-${toString panels.topSystemPanel}/position"         = "p=6;x=0;y=0";
+          "panels/panel-${toString panels.topSystemPanel}/size"             = 28;
+          "panels/panel-${toString panels.topSystemPanel}/length"           = 100;
+          "panels/panel-${toString panels.topSystemPanel}/length-adjust"    = true;
+          "panels/panel-${toString panels.topSystemPanel}/mode"             = 0;
+          "panels/panel-${toString panels.topSystemPanel}/position-locked"  = true;
+          "panels/panel-${toString panels.topSystemPanel}/background-style" = 1;
+          "panels/panel-${toString panels.topSystemPanel}/background-rgba"  = hexToRgba "#33302f" 0.5;
+          "panels/panel-${toString panels.topSystemPanel}/plugin-ids"       = [ plugins.dock plugins.topPanelSeparator plugins.battery plugins.wifi plugins.sound plugins.power ];
 
-          "plugins/plugin-1" = "whiskermenu";
+          "panels/panel-${toString panels.topClockPanel}/position" = "p=6;x=0;y=0";
+          "panels/panel-${toString panels.topClockPanel}/size" = 28;
+          "panels/panel-${toString panels.topClockPanel}/length" = 100;
+          "panels/panel-${toString panels.topClockPanel}/length-adjust"    = true;
+          "panels/panel-${toString panels.topClockPanel}/position-locked"  = true;
+          "panels/panel-${toString panels.topClockPanel}/autohide-behavior" = 0;
+          "panels/panel-${toString panels.topClockPanel}/mode"              = 0;
+          "panels/panel-${toString panels.topClockPanel}/background-style" = 1;
+          "panels/panel-${toString panels.topClockPanel}/background-rgba"  = hexToRgba "#33302f" 0;
+          "panels/panel-${toString panels.topClockPanel}/plugin-ids"       = [ plugins.clockPanelLeftSeparator plugins.clock plugins.clockPanelRightSeparator ];
 
-          "plugins/plugin-5" = "systray";
-          "plugins/plugin-6" = "power-manager-plugin";
-          "plugins/plugin-7" = "launcher";
-          "plugins/plugin-7/items" = [ "pop-quick-menu.desktop" ];
+          "panels/panel-${toString panels.bottomAppsPanel}/position"        = "p=10;x=0;y=0";
+          "panels/panel-${toString panels.bottomAppsPanel}/size"            = 46;
+          "panels/panel-${toString panels.bottomAppsPanel}/length"          = 100;
+          "panels/panel-${toString panels.bottomAppsPanel}/length-adjust"   = true;
+          "panels/panel-${toString panels.bottomAppsPanel}/mode"            = 0;
+          "panels/panel-${toString panels.bottomAppsPanel}/position-locked" = true;
+          "panels/panel-${toString panels.bottomAppsPanel}/autohide-behavior" = 0;
+          "panels/panel-${toString panels.bottomAppsPanel}/background-style"  = 1;
+          "panels/panel-${toString panels.bottomAppsPanel}/background-rgba"   = hexToRgba "#33302f" 0.5;
+          "panels/panel-${toString panels.bottomAppsPanel}/plugin-ids" = [ plugins.bottomLeftSeparator plugins.dock plugins.bottomRightSeparator ];
 
-          "panels/panel-2/position" = "p=7;x=0;y=0";
-          "panels/panel-2/size" = 28;
-          "panels/panel-2/length" = 100;
-          "panels/panel-2/length-adjust"    = true;
-          "panels/panel-2/mode"             = 0;
-          "panels/panel-2/position-locked"  = true;
-          "panels/panel-2/background-style" = 1;
-          "panels/panel-2/background-rgba"  = hexToRgba "#33302f" 1.0;
-          "panels/panel-2/plugin-ids"       = [ 3 ];
-
-          "plugins/plugin-3" = "clock";
-          "plugins/plugin-3/style" = 0;
-          "plugins/plugin-3/digital-time-format" =
-            "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
-
-          # Bottom panel (dock)
-          "panels/panel-4/position"        = "p=10;x=0;y=0";
-          "panels/panel-4/size"            = 46;
-          "panels/panel-4/length"          = 100;
-          "panels/panel-4/length-adjust"   = true;
-          "panels/panel-4/mode"            = 0;
-          "panels/panel-4/position-locked" = true;
-          "panels/panel-4/autohide-behavior" = 0;
-          "panels/panel-4/background-style"  = 1;
-          "panels/panel-4/background-rgba"   = hexToRgba "#33302f" 0.5;
-
-          "panels/panel-4/plugin-ids" = [ 20 dockConfig.id 22 ];
-          "plugins/plugin-${toString dockConfig.id}" = "docklike";
+          "plugins/plugin-${toString plugins.menu}" = "whiskermenu";
+          "plugins/plugin-${toString plugins.clock}" = "clock";
+          "plugins/plugin-${toString plugins.clock}/style" = 0;
+          "plugins/plugin-${toString plugins.clock}/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
+          "plugins/plugin-${toString plugins.dock}" = "docklike";
         }
         # Separators
-        // mkSeparator 2
-        // mkSeparator 20
-        // mkSeparator 22
+        // mkSeparator plugins.bottomLeftSeparator
+        // mkSeparator plugins.bottomRightSeparator
+        // mkSeparator plugins.topPanelSeparator
+        // mkSeparator plugins.clockPanelLeftSeparator
+        // mkSeparator plugins.clockPanelRightSeparator
         # Genmon icons
-        // genmonPanelEntry { id = 8;  arg = "battery"; }
-        // genmonPanelEntry { id = 9;  arg = "wifi"; }
-        // genmonPanelEntry { id = 10; arg = "sound"; }
-        // genmonPanelEntry { id = 11; arg = "power"; };
+        // genmonPanelEntry { id = plugins.battery;  arg = "battery"; }
+        // genmonPanelEntry { id = plugins.wifi;  arg = "wifi"; }
+        // genmonPanelEntry { id = plugins.sound; arg = "sound"; }
+        // genmonPanelEntry { id = plugins.power; arg = "power"; };
     };
   };
 }
