@@ -26,8 +26,8 @@ let
   };
 
   panels = {
-    topSystemPanel = 1;
-    topClockPanel = 2;
+    topClockPanel = 1;
+    topSystemPanel = 2;
     bottomAppsPanel = 3;
   };
 
@@ -197,16 +197,6 @@ in
         {
           "panels" = [ panels.topSystemPanel panels.topClockPanel panels.bottomAppsPanel ];
 
-          # Top panel
-          "panels/panel-${toString panels.topSystemPanel}/position"         = "p=6;x=0;y=0";
-          "panels/panel-${toString panels.topSystemPanel}/size"             = 28;
-          "panels/panel-${toString panels.topSystemPanel}/length"           = 100;
-          "panels/panel-${toString panels.topSystemPanel}/length-adjust"    = true;
-          "panels/panel-${toString panels.topSystemPanel}/mode"             = 0;
-          "panels/panel-${toString panels.topSystemPanel}/position-locked"  = true;
-          "panels/panel-${toString panels.topSystemPanel}/background-style" = 1;
-          "panels/panel-${toString panels.topSystemPanel}/background-rgba"  = hexToRgba "#33302f" 0.5;
-          "panels/panel-${toString panels.topSystemPanel}/plugin-ids"       = [ plugins.menu plugins.topPanelSeparator plugins.battery plugins.wifi plugins.sound plugins.power ];
 
           "panels/panel-${toString panels.topClockPanel}/position" = "p=6;x=0;y=0";
           "panels/panel-${toString panels.topClockPanel}/size" = 28;
@@ -216,8 +206,19 @@ in
           "panels/panel-${toString panels.topClockPanel}/autohide-behavior" = 0;
           "panels/panel-${toString panels.topClockPanel}/mode"              = 0;
           "panels/panel-${toString panels.topClockPanel}/background-style" = 1;
-          "panels/panel-${toString panels.topClockPanel}/background-rgba"  = hexToRgba "#33302f" 0;
+          "panels/panel-${toString panels.topClockPanel}/background-rgba"  = hexToRgba "#33302f" 0.5;
           "panels/panel-${toString panels.topClockPanel}/plugin-ids"       = [ plugins.clockPanelLeftSeparator plugins.clock plugins.clockPanelRightSeparator ];
+
+          # Top panel
+          "panels/panel-${toString panels.topSystemPanel}/position"         = "p=6;x=0;y=0";
+          "panels/panel-${toString panels.topSystemPanel}/size"             = 28;
+          "panels/panel-${toString panels.topSystemPanel}/length"           = 100;
+          "panels/panel-${toString panels.topSystemPanel}/length-adjust"    = true;
+          "panels/panel-${toString panels.topSystemPanel}/mode"             = 0;
+          "panels/panel-${toString panels.topSystemPanel}/position-locked"  = true;
+          "panels/panel-${toString panels.topSystemPanel}/background-style" = 1;
+          "panels/panel-${toString panels.topSystemPanel}/background-rgba"  = hexToRgba "#33302f" 0;
+          "panels/panel-${toString panels.topSystemPanel}/plugin-ids"       = [ plugins.menu plugins.topPanelSeparator plugins.battery plugins.wifi plugins.sound plugins.power ];
 
           "panels/panel-${toString panels.bottomAppsPanel}/position"        = "p=10;x=0;y=0";
           "panels/panel-${toString panels.bottomAppsPanel}/size"            = 46;
