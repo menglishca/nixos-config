@@ -12,6 +12,8 @@
     keepassxc
     killall
     nano
+    pamixer
+    pulseaudio
     qbittorrent
     redshift
     temurin-bin-21

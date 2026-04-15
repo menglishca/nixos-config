@@ -3,38 +3,16 @@ set -euo pipefail
 
 case "${1:-}" in
   battery)
-    "$HOME/.local/bin/status_icons/battery.sh";
+    local has_battery=$(ls /sys/class/power_supply 2>/dev/null | grep -qE 'BAT|battery');
+    if [[ $has_battery ]]; then
+      "$HOME/.local/bin/status_icons/battery.sh";
+    fi
     ;;
   wifi)
-    WIFI_DEV=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
-    if [ -z "${WIFI_DEV}" ]; then
-      # echo "<txt class=\"hidden\"></txt>"
-      exit 0
+    local wifi_device_identifier=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
+    if [[ "${wifi_device_identifier}" ]]; then
+      "$HOME/.local/bin/status_icons/wifi.sh" "${wifi_device_identifier}";
     fi
-
-    if nmcli -t -f TYPE,STATE con show --active | awk -F: '$1=="ethernet" && $2=="activated"{found=1} END{exit !found}'; then
-      # echo "<txt class=\"hidden\"></txt>"
-      exit 0
-    fi
-
-    STATE=$(nmcli -t -f GENERAL.STATE dev show "$WIFI_DEV" | awk -F: '{print $2}' | awk '{print $1}')
-
-    if [ "$STATE" -lt 100 ]; then
-      # Disconnected
-      ICON=$(printf '\U000F092E')   # example: some wifi-off glyph; replace with your choice
-    else
-      SIGNAL=$(nmcli -f IN-USE,SIGNAL dev wifi | awk '$1=="*"{print $2}')
-      SIGNAL=${SIGNAL:-0}
-
-      # Replace \ufxyz with glyphs you actually want; avoid surrogate pairs
-      if   [ "$SIGNAL" -le 25 ];  then ICON=$(printf '\U000F091F')  # weak
-      elif [ "$SIGNAL" -le 50 ];  then ICON=$(printf '\U000F0922')  # medium
-      elif [ "$SIGNAL" -le 75 ];  then ICON=$(printf '\U000F0925')  # good
-      else                             ICON=$(printf '\U000F0928')  # excellent
-      fi
-    fi
-
-    echo "<txt>${ICON}</txt>"
     ;;
 
   sound)

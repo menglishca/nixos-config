@@ -29,6 +29,5 @@ else
 fi
 
 ~/.local/bin/status_icons/build_icon.sh \
-  --pill "#39546f" \
   --segment "${ICON}" --color "${COLOR}" \
   --segment " ${BATTERY}%" --color "#ffffff"
