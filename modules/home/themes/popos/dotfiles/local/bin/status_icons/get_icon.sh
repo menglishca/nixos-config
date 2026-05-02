@@ -7,7 +7,8 @@ case "${1:-}" in
     if ls /sys/class/power_supply 2>/dev/null | grep -qE 'BAT|battery'; then
       "$HOME/.local/bin/status_icons/battery.sh"
     else
-      exit 0;
+      echo -e "<txt></txt>\n<tool></tool>"
+      exit 0
     fi
     ;;
 
@@ -18,7 +19,8 @@ case "${1:-}" in
     if [[ -n "${wifi_device_identifier}" ]]; then
       "$HOME/.local/bin/status_icons/wifi.sh" "${wifi_device_identifier}"
     else 
-      exit 0;
+      echo -e "<txt></txt>\n<tool></tool>"
+      exit 0
     fi
     ;;
 
