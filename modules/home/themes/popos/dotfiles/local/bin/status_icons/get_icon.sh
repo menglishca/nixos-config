@@ -3,15 +3,18 @@ set -euo pipefail
 
 case "${1:-}" in
   battery)
-    local has_battery=$(ls /sys/class/power_supply 2>/dev/null | grep -qE 'BAT|battery');
-    if [[ $has_battery ]]; then
-      "$HOME/.local/bin/status_icons/battery.sh";
+    # grep -q only sets exit status, so test it directly
+    if ls /sys/class/power_supply 2>/dev/null | grep -qE 'BAT|battery'; then
+      "$HOME/.local/bin/status_icons/battery.sh"
     fi
     ;;
+
   wifi)
-    local wifi_device_identifier=$(nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true)
-    if [[ "${wifi_device_identifier}" ]]; then
-      "$HOME/.local/bin/status_icons/wifi.sh" "${wifi_device_identifier}";
+    wifi_device_identifier=$(
+      nmcli -t -f DEVICE,TYPE dev | awk -F: '$2=="wifi"{print $1; exit}' || true
+    )
+    if [[ -n "${wifi_device_identifier}" ]]; then
+      "$HOME/.local/bin/status_icons/wifi.sh" "${wifi_device_identifier}"
     fi
     ;;
 
