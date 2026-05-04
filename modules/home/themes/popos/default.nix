@@ -152,10 +152,6 @@ in
         #docklike-plugin {
           padding-bottom: 3px;
         }
-        .genmon_plugin {
-          padding: 20px;
-          margin: 10px;
-        }
       '';
     };
 

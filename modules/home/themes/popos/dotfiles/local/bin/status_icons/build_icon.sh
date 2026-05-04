@@ -37,7 +37,7 @@ while [ $# -gt 0 ]; do
             done
 
             if [ -n "$COLOR" ] ; then
-                SEGMENT="<span foreground=\"${COLOR}\">${TEXT}</span>";
+                SEGMENT="<span foreground=\"${COLOR}\" style=\"padding: 0 5px;\">${TEXT}</span>";
             elif [ "$BOLD" -eq 1 ]; then
                 SEGMENT="<b>${TEXT}</b>";
             else
