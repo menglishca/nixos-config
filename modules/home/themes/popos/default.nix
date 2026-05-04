@@ -99,8 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.reversal-icon-theme;
-        name = "Reversal";
+        package = pkgs.qogir-icon-theme;
       };
     };
 
@@ -180,7 +179,12 @@ in
       rofi-power-menu
 
       pop-gtk-theme
-      reversal-icon-theme
+      qogir-icon-theme
+      zafiro-icons
+      tela-icon-theme
+      tela-cirlce-icon-theme
+      papirus-icon-theme
+      fluent-icon-theme
 
       upower
       networkmanager
