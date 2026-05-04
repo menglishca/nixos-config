@@ -153,7 +153,8 @@ in
           padding-bottom: 3px;
         }
         .genmon_plugin {
-          padding: 2px;
+          padding: 20px;
+          margin: 10px;
         }
       '';
     };
