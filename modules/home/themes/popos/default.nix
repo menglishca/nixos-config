@@ -96,6 +96,14 @@ in
       "pictures/current-wallpaper.jpg".source = ../../wallpapers/brain.jpg;
     };
 
+    gtk = {
+      enable = true;
+      iconTheme = {
+        package = pkgs.reversal-icon-theme;
+        name = "Reversal";
+      };
+    };
+
     ############################
     # Stylix as plumbing, PopOS as source of truth
     ############################
@@ -172,7 +180,7 @@ in
       rofi-power-menu
 
       pop-gtk-theme
-      pop-icon-theme
+      reversal-icon-theme
 
       upower
       networkmanager
@@ -196,7 +204,6 @@ in
       xfce4-panel =
         {
           "panels" = [ panels.topClockPanel panels.topSystemPanel panels.bottomAppsPanel ];
-
 
           "panels/panel-${toString panels.topClockPanel}/position" = "p=6;x=0;y=0";
           "panels/panel-${toString panels.topClockPanel}/size" = 28;
