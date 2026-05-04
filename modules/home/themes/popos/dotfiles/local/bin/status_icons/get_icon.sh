@@ -27,6 +27,7 @@ case "${1:-}" in
   sound)
     VOL=$(pamixer --get-volume 2>/dev/null || echo 0)
     MUTED=$(pamixer --get-mute 2>/dev/null || echo "false")
+    echo "Volume: ${VOL}%, Muted: ${MUTED}" > /tmp/volume_status
 
     if [ "$MUTED" = "true" ] || [ "$VOL" -eq 0 ]; then
       ICON=$(printf '\uf026')
@@ -38,7 +39,10 @@ case "${1:-}" in
 
     echo "<txt>${ICON}</txt>"
     ;;
-
+  power)
+    ICON=$(printf '\uf0425')
+    echo "<txt>${ICON}</txt>"
+    ;;
   *)
     echo "<txt>${1:-}</txt>"
     ;;
