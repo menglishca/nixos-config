@@ -37,13 +37,13 @@ case "${1:-}" in
       ICON=$(printf '\uf028')
     fi
 
-    echo "<txt style=\"padding: 0 5px;\">${ICON}</txt>"
+    ~/.local/bin/status_icons/build_icon.sh --segment "${ICON}"
     ;;
   power)
     ICON=$(printf '\U000F0425')
-    echo "<txt style=\"padding: 0 5px;\">${ICON}</txt>"
+    ~/.local/bin/status_icons/build_icon.sh --segment "${ICON}"
     ;;
   *)
-    echo "<txt style=\"padding: 0 5px;\">${1:-}</txt>"
+    echo "<txt>${1:-}</txt>"
     ;;
 esac
