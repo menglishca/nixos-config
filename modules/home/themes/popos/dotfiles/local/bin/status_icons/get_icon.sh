@@ -40,7 +40,7 @@ case "${1:-}" in
     echo "<txt>${ICON}</txt>"
     ;;
   power)
-    ICON=$(printf '\uf0425')
+    ICON=$(printf '\U000F0425')
     echo "<txt>${ICON}</txt>"
     ;;
   *)
