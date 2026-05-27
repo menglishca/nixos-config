@@ -182,7 +182,7 @@ in
       qogir-icon-theme
       zafiro-icons
       tela-icon-theme
-      tela-cirlce-icon-theme
+      tela-circle-icon-theme
       papirus-icon-theme
       fluent-icon-theme
 
