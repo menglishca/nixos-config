@@ -99,7 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.qogir-icon-theme;
+        name = "Qogir";
       };
     };
 
