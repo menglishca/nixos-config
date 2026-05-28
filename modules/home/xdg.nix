@@ -5,7 +5,6 @@
   xdg = {
     enable = true;
     desktopEntries = {
-      enable = true;
       alacritty = {
         name = "Alacritty";
         exec = "alacritty";
