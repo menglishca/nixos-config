@@ -79,6 +79,14 @@ in
   # Only apply when this theme is selected
   config = mkIf (config.home.theme == "PopOS") {
 
+    xdg.desktopEntries."alacritty" = {
+      name = "Alacritty";
+      exec = "${pkgs.alacritty}/bin/alacritty";
+      icon = "terminal";
+      categories = [ "System" "TerminalEmulator" ];
+      mimeType = [ "text/plain" ];
+    };
+
     home.file = themeHomeFiles // {
       ".config/xfce4/panel/docklike-${toString plugins.dock}.rc".source =
         pkgs.writeText "docklike-${toString plugins.dock}.rc" ''
