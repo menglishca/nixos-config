@@ -18,19 +18,16 @@
         enable = true;
         settings = {
             xfwm4 = {
-                snap_to_border = true;
-                snap_to_windows = true;
-                snap_width = 10;
-                snap_resize = true;
-                
-                # Focus settings
-                click_to_focus = true;
-                focus_new = true;
-                raise_on_focus = true;
+                "/general/snap_to_border" = true;
+                "/general/snap_to_windows" = false;
+                "/general/snap_width" = 10;
+                "/general/wrap_windows" = false;
+                "/general/click_to_focus" = true;
+                "/general/focus_new" = true;
+                "/general/raise_on_focus" = true;
+                "/general/move_opacity" = 100;
             };
-
             "xfce4-keyboard-shortcuts" = {
-                
                 # App launcher (Rofi)
                 "commands/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";                
                 # Window snapping (halves)
