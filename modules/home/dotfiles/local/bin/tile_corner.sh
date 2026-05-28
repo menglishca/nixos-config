@@ -8,6 +8,7 @@ SCREEN_HEIGHT=$(echo "$SCREEN" | cut -d'x' -f2)
 BOTTOM_PANEL_HEIGHT=$(wmctrl -lG | awk -v height="${SCREEN_HEIGHT}" '/xfce4-panel/ && ($4+$6) == height {print $6}')
 BOTTOM_PANEL_HEIGHT=${BOTTOM_PANEL_HEIGHT:-0}
 AVAILABLE_HEIGHT=$((SCREEN_HEIGHT - BOTTOM_PANEL_HEIGHT))
+echo "Screen: ${SCREEN_WIDTH}x${SCREEN_HEIGHT}, Available Height: ${AVAILABLE_HEIGHT}, Bottom Panel Height: ${BOTTOM_PANEL_HEIGHT}"
 
 # Quarter-screen dimensions
 HALF_SCREEN_WIDTH=$((SCREEN_WIDTH / 2))
