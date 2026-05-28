@@ -99,7 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Qogir";
+        name = "Tela Orange Dakr";
       };
     };
 
@@ -177,15 +177,7 @@ in
 
       rofi
       rofi-power-menu
-
-      pop-gtk-theme
-      qogir-icon-theme
-      zafiro-icons
       tela-icon-theme
-      tela-circle-icon-theme
-      papirus-icon-theme
-      fluent-icon-theme
-      papirus-folders
 
       upower
       networkmanager
