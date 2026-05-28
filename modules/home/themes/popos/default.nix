@@ -195,8 +195,6 @@ in
       mint-l-icons
       nixos-icons
       candy-icons
-      kuyen-icons
-      antu-icons
       linearicons-free
       faba-icon-theme
       moka-icon-theme
