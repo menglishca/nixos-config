@@ -23,16 +23,24 @@ let
                                 then recursivelyGetFiles childRelativePath
                                 else
                                     let
-                                        pathParts  = lib.splitString "/" childRelativePath;
-                                        top        = lib.head pathParts;
-                                        rest       = lib.tail pathParts;
+                                        pathParts = lib.splitString "/" childRelativePath;
+                                        top = lib.head pathParts;
+                                        rest = lib.tail pathParts;
                                         topWithDot = if prefixDot then ".${top}" else top;
-                                        homePath   = lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
+                                        homePath = lib.concatStringsSep "/" ([ topWithDot ] ++ rest);
+                                        fileName = lib.last pathParts;
+                                        scriptExtensions = [ ".sh" ".bash" ".zsh" ".fish" ".py" ".rb" ".pl" ];
+                                        hasScriptExt = lib.any (ext: lib.hasSuffix ext fileName) scriptExtensions;
+                                        isInBinDir = lib.elem "bin" (lib.init pathParts);
+                                        shouldBeExecutable = hasScriptExt || isInBinDir;
                                     in
                                         [
                                             {
                                                 name  = homePath;
-                                                value = { source = dotfilesDir + "/${childRelativePath}"; };
+                                                value = {
+                                                    source = dotfilesDir + "/${childRelativePath}";
+                                                    executable = shouldBeExecutable;
+                                                };
                                             }
                                         ]
                         )
