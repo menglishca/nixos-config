@@ -27,33 +27,21 @@
                 click_to_focus = true;
                 focus_new = true;
                 raise_on_focus = true;
-                };
-
-                # -----------------------------
-                # Keyboard Shortcuts
-                # -----------------------------
-                "xfce4-keyboard-shortcuts" = {
-                # Screenshot
-                "Print" = "xfce4-screenshooter";
-                
-                # App launcher (Rofi)
-                "<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";
-                
-                # Terminal
-                "<Control><Alt>t" = "xdg-terminal";
-                
-                # Window snapping (halves)
-                "<Super>Left" = "xfwm4 --move-window-left";
-                "<Super>Right" = "xfwm4 --move-window-right";
-                "<Super>Up" = "xfwm4 --move-window-up";
-                "<Super>Down" = "xfwm4 --move-window-down";
             };
 
             "xfce4-keyboard-shortcuts" = {
-                "<Super>KP7" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-left";
-                "<Super>KP9" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-right";
-                "<Super>KP1" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-left";
-                "<Super>KP3" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-right";
+                
+                # App launcher (Rofi)
+                "commands/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";                
+                # Window snapping (halves)
+                "commands/custom/<Super>Left" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh left";
+                "commands/custom/<Super>Right" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh right";
+                "commands/custom/<Super>Up" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top";
+                "commands/custom/<Super>Down" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom";
+                "commands/custom/<Super>KP7" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-left";
+                "commands/custom/<Super>KP9" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-right";
+                "commands/custom/<Super>KP1" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-left";
+                "commands/custom/<Super>KP3" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-right";
             };
         };
     };
