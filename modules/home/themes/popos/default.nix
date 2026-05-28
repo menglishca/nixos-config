@@ -210,7 +210,7 @@ in
       kanagawa-icon-theme
       reversal-icon-theme
       whitesur-icon-theme
-      humaity-icon-theme
+      humanity-icon-theme
       rose-pine-icon-theme
       morewaita-icon-theme
       oranchelo-icon-theme
