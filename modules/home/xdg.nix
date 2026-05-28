@@ -7,8 +7,9 @@
     desktopEntries = {
       alacritty = {
         name = "Alacritty";
-        exec = "${pkgs.alacritty}/bin/alacritty";
+        exec = "alacritty";
         icon = "terminal";
+        terminal = false;
         categories = [ "System" "TerminalEmulator" ];
         mimeType = [ "text/plain" ];
       };
