@@ -189,44 +189,44 @@ in
       rofi
       rofi-power-menu
 
-      pop-gtk-theme
-      qogir-icon-theme
-      zafiro-icons
-      tela-icon-theme
-      tela-circle-icon-theme
-      papirus-icon-theme
-      fluent-icon-theme
-      papirus-folders
+      # pop-gtk-theme
+      # qogir-icon-theme
+      # zafiro-icons
+      # tela-icon-theme
+      # tela-circle-icon-theme
+      # papirus-icon-theme
+      # fluent-icon-theme
+      # papirus-folders
 
-      marwaita-icons
-      material-icons
-      mint-y-icons
-      cosmic-icons
-      mint-x-icons
-      mint-l-icons
-      nixos-icons
-      candy-icons
-      linearicons-free
-      faba-icon-theme
-      moka-icon-theme
-      kora-icon-theme
-      mate-icon-theme
-      tango-icon-theme
-      vimix-icon-theme
-      nordzy-icon-theme
-      colloid-icon-theme
-      dracula-icon-theme
-      kanagawa-icon-theme
-      reversal-icon-theme
-      whitesur-icon-theme
-      humanity-icon-theme
-      rose-pine-icon-theme
-      morewaita-icon-theme
+      # marwaita-icons
+      # material-icons
+      # mint-y-icons
+      # cosmic-icons
+      # mint-x-icons
+      # mint-l-icons
+      # nixos-icons
+      # candy-icons
+      # linearicons-free
+      # faba-icon-theme
+      # moka-icon-theme
+      # kora-icon-theme
+      # mate-icon-theme
+      # tango-icon-theme
+      # vimix-icon-theme
+      # nordzy-icon-theme
+      # colloid-icon-theme
+      # dracula-icon-theme
+      # kanagawa-icon-theme
+      # reversal-icon-theme
+      # whitesur-icon-theme
+      # humanity-icon-theme
+      # rose-pine-icon-theme
+      # morewaita-icon-theme
       oranchelo-icon-theme
-      flat-remix-icon-theme
-      beauty-line-icon-theme
-      papirus-maia-icon-theme
-      la-capitaine-icon-theme
+      # flat-remix-icon-theme
+      # beauty-line-icon-theme
+      # papirus-maia-icon-theme
+      # la-capitaine-icon-theme
 
       upower
       networkmanager
@@ -284,7 +284,11 @@ in
           "panels/panel-${toString panels.bottomAppsPanel}/background-rgba"   = hexToRgba "#33302f" 0.5;
           "panels/panel-${toString panels.bottomAppsPanel}/plugin-ids" = [ plugins.bottomLeftSeparator plugins.dock plugins.bottomRightSeparator ];
 
-          "plugins/plugin-${toString plugins.menu}" = "whiskermenu";
+          "plugins/plugin-${toString plugins.menu}" = {
+            type = "whiskermenu";
+            "button-icon" = "ubuntuone-client-offline";
+            "show-button-title" = false;
+          };
           "plugins/plugin-${toString plugins.clock}" = "clock";
           "plugins/plugin-${toString plugins.clock}/style" = 0;
           "plugins/plugin-${toString plugins.clock}/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
