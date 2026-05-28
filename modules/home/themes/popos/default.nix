@@ -284,11 +284,9 @@ in
           "panels/panel-${toString panels.bottomAppsPanel}/background-rgba"   = hexToRgba "#33302f" 0.5;
           "panels/panel-${toString panels.bottomAppsPanel}/plugin-ids" = [ plugins.bottomLeftSeparator plugins.dock plugins.bottomRightSeparator ];
 
-          "plugins/plugin-${toString plugins.menu}" = {
-            type = "whiskermenu";
-            "button-icon" = "ubuntuone-client-offline";
-            "show-button-title" = false;
-          };
+          "plugins/plugin-${toString plugins.menu}" = "whiskermenu";
+          "plugins/plugin-${toString plugins.menu}/show-button-title" = false;
+          "plugins/plugin-${toString plugins.menu}/button-icon" = "ubuntuone-client-offline";
           "plugins/plugin-${toString plugins.clock}" = "clock";
           "plugins/plugin-${toString plugins.clock}/style" = 0;
           "plugins/plugin-${toString plugins.clock}/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
