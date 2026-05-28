@@ -14,6 +14,7 @@
     homeDirectory = "/home/matthew";
     theme = "PopOS";
     themeOptions.PopOS.variant = "light";
+    file."hm-test.txt".text = "Home Manager is working!";
   };
 
   # This file is your user-level composition root.
