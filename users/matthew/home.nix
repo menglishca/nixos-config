@@ -7,6 +7,7 @@
     ../../modules/home/xdg.nix
     ../../modules/home/theme.nix
     ../../modules/home/dotfiles.nix
+    ../../modules/home/keybinds.nix
   ];
 
   home = {
@@ -14,11 +15,5 @@
     homeDirectory = "/home/matthew";
     theme = "PopOS";
     themeOptions.PopOS.variant = "light";
-    file."hm-test.txt".text = "Home Manager is working!";
   };
-
-  # This file is your user-level composition root.
-  # Keep it readable. It should answer:
-  # - which home modules does this user want?
-  # - which user-specific choices differ from other users?
 }
