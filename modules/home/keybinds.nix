@@ -38,10 +38,10 @@
                 "commands/custom/<Super>Right" = "tile_right_key";
                 "commands/custom/<Super>Up" = "tile_up_key";
                 "commands/custom/<Super>Down" = "tile_down_key";
-                "commands/custom/<Super>KP7" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-left";
-                "commands/custom/<Super>KP9" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh top-right";
-                "commands/custom/<Super>KP1" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-left";
-                "commands/custom/<Super>KP3" = "${config.home.homeDirectory}/.local/bin/tile_corner.sh bottom-right";
+                "commands/custom/<Super><Alt>Left" = "tile_up_left_key";
+                "commands/custom/<Super><Alt>Right" = "tile_up_right_key";
+                "commands/custom/<Super><Alt>Down" = "tile_down_left_key";
+                "commands/custom/<Super><Alt>Up" = "tile_down_right_key";
             };
         };
     };
