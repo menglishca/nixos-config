@@ -99,7 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Qogir";
+        name = "oranchelo-beka";
       };
     };
 
@@ -207,7 +207,7 @@ in
       nordzy-icon-theme
       colloid-icon-theme
       dracula-icon-theme
-      kangawa-icon-theme
+      kanagawa-icon-theme
       reversal-icon-theme
       whitesur-icon-theme
       humaity-icon-theme
