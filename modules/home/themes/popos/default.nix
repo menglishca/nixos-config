@@ -185,6 +185,8 @@ in
       tela-circle-icon-theme
       papirus-icon-theme
       fluent-icon-theme
+      catppuccin-papirus-folders
+      papirus-folders
 
       upower
       networkmanager
