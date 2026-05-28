@@ -99,7 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        name = "oranchelo-beka";
+        name = "Oranchelo-Beka";
       };
     };
 
