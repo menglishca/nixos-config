@@ -9,6 +9,7 @@
     git
     featherpad
     firefox
+    jq
     keepassxc
     killall
     nano
