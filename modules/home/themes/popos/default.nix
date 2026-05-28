@@ -99,7 +99,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Tela Orange Dakr";
+        name = "Qogir";
       };
     };
 
@@ -177,7 +177,47 @@ in
 
       rofi
       rofi-power-menu
+
+      pop-gtk-theme
+      qogir-icon-theme
+      zafiro-icons
       tela-icon-theme
+      tela-circle-icon-theme
+      papirus-icon-theme
+      fluent-icon-theme
+      papirus-folders
+
+      marwaita-icons
+      material-icons
+      mint-y-icons
+      cosmic-icons
+      mint-x-icons
+      mint-l-icons
+      nixos-icons
+      candy-icons
+      kuyen-icons
+      antu-icons
+      linearicons-free
+      faba-icon-theme
+      moka-icon-theme
+      kora-icon-theme
+      mate-icon-theme
+      tango-icon-theme
+      vimix-icon-theme
+      nordzy-icon-theme
+      colloid-icon-theme
+      dracula-icon-theme
+      kangawa-icon-theme
+      reversal-icon-theme
+      whitesur-icon-theme
+      humaity-icon-theme
+      rose-pine-icon-theme
+      morewaita-icon-theme
+      oranchelo-icon-theme
+      flat-remix-icon-theme
+      beauty-line-icon-theme
+      papirus-maia-icon-theme
+      la-capitaine-icon-theme
 
       upower
       networkmanager
