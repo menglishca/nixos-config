@@ -78,13 +78,14 @@ in
 
   # Only apply when this theme is selected
   config = mkIf (config.home.theme == "PopOS") {
-
-    xdg.desktopEntries."alacritty" = {
-      name = "Alacritty";
-      exec = "${pkgs.alacritty}/bin/alacritty";
-      icon = "terminal";
-      categories = [ "System" "TerminalEmulator" ];
-      mimeType = [ "text/plain" ];
+    xdg.desktopEntries = {
+      alacritty = {
+        name = "Alacritty";
+        exec = "${pkgs.alacritty}/bin/alacritty";
+        icon = "terminal";
+        categories = [ "System" "TerminalEmulator" ];
+        mimeType = [ "text/plain" ];
+      };
     };
 
     home.file = themeHomeFiles // {
