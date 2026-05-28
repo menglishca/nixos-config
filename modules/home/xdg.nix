@@ -4,16 +4,6 @@
 {
   xdg = {
     enable = true;
-    desktopEntries = {
-      alacritty = {
-        name = "Alacritty";
-        exec = "alacritty";
-        icon = "terminal";
-        terminal = false;
-        categories = [ "System" "TerminalEmulator" ];
-        mimeType = [ "text/plain" ];
-      };
-    };
 
     userDirs = let
       lower = path: "${config.home.homeDirectory}/${path}";
