@@ -150,23 +150,11 @@ in
       };
 
       targets = {
-        gtk = {
-          enable = true;
-          extraCss = ''
-            /* Docklike plugin padding tweak */
-            #docklike-plugin {
-              padding-bottom: 3px;
-            }
-          '';
-        };
+        gtk.enable = true;
         gnome.enable = false;
-        alacritty = {
-          enable = true;
-          # opacity = {
-          #   enable = true;
-          #   override.terminal = 0.8;
-          # };
-        };
+        alacritty.enable = true;
+        alacritty.opacity.enable = true;
+        alacritty.opacity.override.terminal = 0.8;
         firefox = {
           enable       = true;
           profileNames = [ "main" ];
