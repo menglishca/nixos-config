@@ -36,9 +36,9 @@
                 "xfwm4/custom/<Super>Up" = "tile_up_key";
                 "xfwm4/custom/<Super>Down" = "tile_down_key";
                 "xfwm4/custom/<Super><Alt>Left" = "tile_up_left_key";
-                "xfwm4/custom/<Super><Alt>Right" = "tile_up_right_key";
+                "xfwm4/custom/<Super><Alt>Right" = "tile_down_right_key";
                 "xfwm4/custom/<Super><Alt>Down" = "tile_down_left_key";
-                "xfwm4/custom/<Super><Alt>Up" = "tile_down_right_key";
+                "xfwm4/custom/<Super><Alt>Up" = "tile_up_right_key";
             };
         };
     };

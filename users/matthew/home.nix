@@ -7,7 +7,7 @@
     ../../modules/home/xdg.nix
     ../../modules/home/theme.nix
     ../../modules/home/dotfiles.nix
-    ../../modules/home/keybinds.nix
+    # ../../modules/home/keybinds.nix
   ];
 
   home = {
