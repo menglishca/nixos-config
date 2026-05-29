@@ -30,20 +30,7 @@
             };
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
-                "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";                
-                # Window snapping (halves)
-                "xfwm4/default/<Super>Left" = {
-                    type = "empty";
-                };
-                "xfwm4/default/<Super>Right" = {
-                    type = "empty";
-                };
-                "xfwm4/default/<Super>Up" = {
-                    type = "empty";
-                };
-                "xfwm4/default/<Super>Down" = {
-                    type = "empty";
-                };
+                "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";
                 "xfwm4/custom/<Super>Left" = "tile_left_key";
                 "xfwm4/custom/<Super>Right" = "tile_right_key";
                 "xfwm4/custom/<Super>Up" = "tile_up_key";
