@@ -182,8 +182,8 @@ in
           backdrop = {
             enable = true;
             imageStyle = "centered"; 
-          }
-        }
+          };
+        };
       };
     };
 
