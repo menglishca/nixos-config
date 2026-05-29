@@ -177,6 +177,13 @@ in
           opacity.enable = true;
         };
         vscode.enable = true;
+        xfce = {
+          enable = true;
+          backdrop = {
+            enable = true;
+            imageStyle = "centered"; 
+          }
+        }
       };
     };
 
@@ -246,12 +253,12 @@ in
     xfconf.enable = true;
     xfconf.settings = {
       xfce4-desktop = {
-        "backdrop/single-image-mode" = true;
-        "backdrop/single-workspace-mode" = true;
-        "backdrop/screen0/monitor0/workspace0/last-image" =
-          "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
-        "backdrop/screen0/monitorVirtual-1/workspace0/last-image" =
-          "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
+        # "backdrop/single-image-mode" = true;
+        # "backdrop/single-workspace-mode" = true;
+        # "backdrop/screen0/monitor0/workspace0/last-image" =
+        #   "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
+        # "backdrop/screen0/monitorVirtual-1/workspace0/last-image" =
+        #   "${config.home.homeDirectory}/pictures/current-wallpaper.jpg";
       };
 
       xfce4-panel =
