@@ -177,9 +177,6 @@ in
           opacity.enable = true;
         };
         vscode.enable = true;
-        xfce = {
-          enable = true;
-        };
       };
     };
 
