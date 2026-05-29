@@ -180,6 +180,7 @@ in
     xfconf.settings = {
       xsettings = {
         "Net/IconThemeName" = "Oranchelo-Beka";
+        "Net/ThemeName" = if themeConfig.variant == "dark" then "adw-gtk3-dark" else "adw-gtk3";
       };
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
