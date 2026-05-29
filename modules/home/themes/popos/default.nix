@@ -150,14 +150,22 @@ in
       };
 
       targets = {
-        gtk.enable       = true;
+        gtk = {
+          enable = true;
+          extraCss = ''
+            /* Docklike plugin padding tweak */
+            #docklike-plugin {
+              padding-bottom: 3px;
+            }
+          '';
+        };
         gnome.enable     = false;
         alacritty = {
           enable = true;
-          opacity = {
-            enable = true;
-            override.terminal = 0.8;
-          };
+          # opacity = {
+          #   enable = true;
+          #   override.terminal = 0.8;
+          # };
         };
         firefox = {
           enable       = true;
@@ -170,13 +178,6 @@ in
         };
         vscode.enable = true;
       };
-
-      targets.gtk.extraCss = ''
-        /* Docklike plugin padding tweak */
-        #docklike-plugin {
-          padding-bottom: 3px;
-        }
-      '';
     };
 
     ############################
