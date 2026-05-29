@@ -177,6 +177,7 @@ in
           opacity.enable = true;
         };
         vscode.enable = true;
+        xfce.enable = true;
       };
     };
 
@@ -245,6 +246,9 @@ in
     ############################
     xfconf.enable = true;
     xfconf.settings = {
+      xsettings = {
+        "Net/IconThemeName" = "Oranchelo-Beka";
+      };
       xfce4-desktop = {
         "backdrop/single-image-mode" = true;
         "backdrop/single-workspace-mode" = true;
