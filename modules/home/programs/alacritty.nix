@@ -11,7 +11,9 @@
           y = -1;
         };
       };
-      opacity = 0.8;
+      window = {
+        opacity = 0.8;
+      };
     };
   };
 }
