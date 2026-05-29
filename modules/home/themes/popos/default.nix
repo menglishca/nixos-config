@@ -289,6 +289,7 @@ in
           "plugins/plugin-${toString plugins.menu}/button-icon" = "ubuntuone-client-offline";
           "plugins/plugin-${toString plugins.clock}" = "clock";
           "plugins/plugin-${toString plugins.clock}/style" = 0;
+          "plugins/plugin-${toString plugins.clock}/digital-layout" = 3;
           "plugins/plugin-${toString plugins.clock}/digital-time-format" = "<span font_family=\"Fira Sans\" font_weight=\"bold\" size=\"9000\">%b %-e %-I:%M %p</span>";
           "plugins/plugin-${toString plugins.dock}" = "docklike";
         }

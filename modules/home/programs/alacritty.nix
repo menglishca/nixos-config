@@ -4,11 +4,14 @@
 {
   programs.alacritty = {
     enable = true;
-    settings.font = {
-      offset = {
-        x = 0;
-        y = -1;
+    settings = {
+      font = {
+        offset = {
+          x = 0;
+          y = -1;
+        };
       };
+      opacity = 0.8;
     };
   };
 }

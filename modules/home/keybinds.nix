@@ -26,19 +26,20 @@
                 "general/focus_new" = true;
                 "general/raise_on_focus" = true;
                 "general/move_opacity" = 100;
+                "general/box_move" = true;
             };
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
-                "commands/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";                
+                "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";                
                 # Window snapping (halves)
-                "commands/custom/<Super>Left" = "tile_left_key";
-                "commands/custom/<Super>Right" = "tile_right_key";
-                "commands/custom/<Super>Up" = "tile_up_key";
-                "commands/custom/<Super>Down" = "tile_down_key";
-                "commands/custom/<Super><Alt>Left" = "tile_up_left_key";
-                "commands/custom/<Super><Alt>Right" = "tile_up_right_key";
-                "commands/custom/<Super><Alt>Down" = "tile_down_left_key";
-                "commands/custom/<Super><Alt>Up" = "tile_down_right_key";
+                "xfwm4/custom/<Super>Left" = "tile_left_key";
+                "xfwm4/custom/<Super>Right" = "tile_right_key";
+                "xfwm4/custom/<Super>Up" = "tile_up_key";
+                "xfwm4/custom/<Super>Down" = "tile_down_key";
+                "xfwm4/custom/<Super><Alt>Left" = "tile_up_left_key";
+                "xfwm4/custom/<Super><Alt>Right" = "tile_up_right_key";
+                "xfwm4/custom/<Super><Alt>Down" = "tile_down_left_key";
+                "xfwm4/custom/<Super><Alt>Up" = "tile_down_right_key";
             };
         };
     };
