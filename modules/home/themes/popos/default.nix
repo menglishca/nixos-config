@@ -152,7 +152,13 @@ in
       targets = {
         gtk.enable       = true;
         gnome.enable     = false;
-        alacritty.enable = true;
+        alacritty = {
+          enable = true;
+          opacity = {
+            enable = true;
+            override.terminal = 0.8;
+          };
+        };
         firefox = {
           enable       = true;
           profileNames = [ "main" ];

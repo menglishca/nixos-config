@@ -11,9 +11,6 @@
           y = -1;
         };
       };
-      window = {
-        opacity = lib.mkForce 0.8;
-      };
     };
   };
 }
