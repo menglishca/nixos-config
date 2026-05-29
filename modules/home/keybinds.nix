@@ -27,10 +27,12 @@
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
                 "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";
-                "xfwm4/custom/<Super>Left" = "tile_left_key";
-                "xfwm4/custom/<Super>Right" = "tile_right_key";
+                "xfwm4/custom/<Super>KP_Down" = "";
+                "xfwm4/custom/<Super>KP_Right" = "";
                 "xfwm4/custom/<Super>Up" = "tile_up_key";
                 "xfwm4/custom/<Super>Down" = "tile_down_key";
+                "xfwm4/custom/<Super>Left" = "tile_left_key";
+                "xfwm4/custom/<Super>Right" = "tile_right_key";
                 "xfwm4/custom/<Super><Alt>Left" = "tile_up_left_key";
                 "xfwm4/custom/<Super><Alt>Right" = "tile_down_right_key";
                 "xfwm4/custom/<Super><Alt>Down" = "tile_down_left_key";
