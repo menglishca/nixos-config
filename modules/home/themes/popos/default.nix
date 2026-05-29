@@ -162,10 +162,10 @@ in
         gnome.enable     = false;
         alacritty = {
           enable = true;
-          opacity = {
-            enable = true;
-            override.terminal = 0.8;
-          };
+          # opacity = {
+          #   enable = true;
+          #   override.terminal = 0.8;
+          # };
         };
         firefox = {
           enable       = true;

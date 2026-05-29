@@ -17,17 +17,17 @@
     xfconf = {
         enable = true;
         settings = {
-            xfwm4 = {
-                "general/snap_to_border" = true;
-                "general/snap_to_windows" = false;
-                "general/snap_width" = 10;
-                "general/wrap_windows" = false;
-                "general/click_to_focus" = true;
-                "general/focus_new" = true;
-                "general/raise_on_focus" = true;
-                "general/move_opacity" = 100;
-                "general/box_move" = true;
-            };
+            # xfwm4 = {
+            #     "general/snap_to_border" = true;
+            #     "general/snap_to_windows" = false;
+            #     "general/snap_width" = 10;
+            #     "general/wrap_windows" = false;
+            #     "general/click_to_focus" = true;
+            #     "general/focus_new" = true;
+            #     "general/raise_on_focus" = true;
+            #     "general/move_opacity" = 100;
+            #     "general/box_move" = true;
+            # };
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
                 "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";
