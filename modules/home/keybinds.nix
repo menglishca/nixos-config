@@ -18,14 +18,14 @@
         enable = true;
         settings = {
             xfwm4 = {
-                "/general/snap_to_border" = true;
-                "/general/snap_to_windows" = false;
-                "/general/snap_width" = 10;
-                "/general/wrap_windows" = false;
-                "/general/click_to_focus" = true;
-                "/general/focus_new" = true;
-                "/general/raise_on_focus" = true;
-                "/general/move_opacity" = 100;
+                "general/snap_to_border" = true;
+                "general/snap_to_windows" = false;
+                "general/snap_width" = 10;
+                "general/wrap_windows" = false;
+                "general/click_to_focus" = true;
+                "general/focus_new" = true;
+                "general/raise_on_focus" = true;
+                "general/move_opacity" = 100;
             };
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
