@@ -113,62 +113,6 @@ in
         name = "Oranchelo-Beka";
       };
     };
-
-    ############################
-    # Stylix as plumbing, PopOS as source of truth
-    ############################
-    stylix = {
-      image = ../../wallpapers/brain.jpg;
-
-      polarity = if themeConfig.variant == "dark" then "dark" else "light";
-
-      base16Scheme = {
-        base00 = "1a1444";
-        base01 = "2e418d";
-        base02 = "6b58ce";
-        base03 = "73a2ce";
-        base04 = "99bce2";
-        base05 = "f7ded9";
-        base06 = "fbe8d7";
-        base07 = "f4e2ce";
-        base08 = "8386ed";
-        base09 = "b5838e";
-        base0A = "7191cc";
-        base0B = "9b89b3";
-        base0C = "7c8cd9";
-        base0D = "a786a1";
-        base0E = "a882bf";
-        base0F = "947dff";
-      };
-
-      fonts = {
-        sizes = {
-          applications = 10;
-          terminal     = 11;
-          desktop      = 10;
-        };
-      };
-
-      targets = {
-        gtk.enable = true;
-        gnome.enable = false;
-        alacritty.enable = true;
-        alacritty.opacity.enable = true;
-        alacritty.opacity.override.terminal = 0.8;
-        firefox = {
-          enable       = true;
-          profileNames = [ "main" ];
-        };
-        rofi = {
-          enable        = true;
-          fonts.enable  = true;
-          opacity.enable = true;
-        };
-        vscode.enable = true;
-        xfce.enable = true;
-      };
-    };
-
     ############################
     # Packages (XFCE + theming)
     ############################
@@ -184,6 +128,11 @@ in
 
       rofi
       rofi-power-menu
+
+      oranchelo-icon-theme
+      upower
+      networkmanager
+      pamixer
 
       # pop-gtk-theme
       # qogir-icon-theme
@@ -218,15 +167,10 @@ in
       # humanity-icon-theme
       # rose-pine-icon-theme
       # morewaita-icon-theme
-      oranchelo-icon-theme
       # flat-remix-icon-theme
       # beauty-line-icon-theme
       # papirus-maia-icon-theme
       # la-capitaine-icon-theme
-
-      upower
-      networkmanager
-      pamixer
     ];
 
     ############################
@@ -301,6 +245,61 @@ in
         // genmonPanelEntry { id = plugins.wifi;  arg = "wifi"; }
         // genmonPanelEntry { id = plugins.sound; arg = "sound"; }
         // genmonPanelEntry { id = plugins.power; arg = "power"; };
+    };
+
+    ############################
+    # Stylix as plumbing, PopOS as source of truth
+    ############################
+    stylix = {
+      image = ../../wallpapers/brain.jpg;
+
+      polarity = if themeConfig.variant == "dark" then "dark" else "light";
+
+      base16Scheme = {
+        base00 = "1a1444";
+        base01 = "2e418d";
+        base02 = "6b58ce";
+        base03 = "73a2ce";
+        base04 = "99bce2";
+        base05 = "f7ded9";
+        base06 = "fbe8d7";
+        base07 = "f4e2ce";
+        base08 = "8386ed";
+        base09 = "b5838e";
+        base0A = "7191cc";
+        base0B = "9b89b3";
+        base0C = "7c8cd9";
+        base0D = "a786a1";
+        base0E = "a882bf";
+        base0F = "947dff";
+      };
+
+      fonts = {
+        sizes = {
+          applications = 10;
+          terminal     = 11;
+          desktop      = 10;
+        };
+      };
+
+      targets = {
+        gtk.enable = true;
+        gnome.enable = false;
+        alacritty.enable = true;
+        alacritty.opacity.enable = true;
+        alacritty.opacity.override.terminal = 0.8;
+        firefox = {
+          enable       = true;
+          profileNames = [ "main" ];
+        };
+        rofi = {
+          enable        = true;
+          fonts.enable  = true;
+          opacity.enable = true;
+        };
+        vscode.enable = true;
+        xfce.enable = true;
+      };
     };
   };
 }
