@@ -18,6 +18,7 @@
     qbittorrent
     redshift
     temurin-bin-21
+    tmux
     vlc
     zoom-us
   ];
