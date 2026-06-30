@@ -15,7 +15,7 @@
     };
 
     rofi-suite = {
-      url = "path:/home/matthew/code/rofi";
+      url = "github:menglishca/rofi-suite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
