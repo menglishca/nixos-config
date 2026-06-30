@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, rofi-suite, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     ../../modules/home/theme.nix
     ../../modules/home/dotfiles.nix
     ../../modules/home/keybinds.nix
+    rofi-suite.homeManagerModules.default
   ];
 
   home = {
@@ -15,5 +16,12 @@
     homeDirectory = "/home/matthew";
     theme = "PopOS";
     themeOptions.PopOS.variant = "light";
+  };
+
+  programs.rofi-suite = {
+    enable = true;
+    package = rofi-suite.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    themeType = "rounded";
+    useStylixColors = true;
   };
 }

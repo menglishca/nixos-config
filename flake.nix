@@ -13,9 +13,14 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rofi-suite = {
+      url = "path:/home/matthew/code/rofi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, rofi-suite, ... }:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
@@ -31,7 +36,7 @@
         {
           home-manager = {
             backupFileExtension = "backup";
-            extraSpecialArgs = { inherit self; };
+            extraSpecialArgs = { inherit self rofi-suite; };
             overwriteBackup = true;
             useGlobalPkgs = true;
             useUserPackages = true;

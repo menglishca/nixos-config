@@ -7,7 +7,6 @@
         xfce4-screenshooter
         wmctrl
         xdotool
-        rofi
     ];
   
     xfconf = {
@@ -26,7 +25,7 @@
             };
             "xfce4-keyboard-shortcuts" = {
                 # App launcher (Rofi)
-                "xfwm4/custom/<Control>space" = "${pkgs.rofi}/bin/rofi -show drun";
+                "xfwm4/custom/<Control>space" = "${config.home.homeDirectory}/.config/rofi/bin/rofi-desktop.sh drun";
                 "xfwm4/custom/<Super>KP_Down" = "";
                 "xfwm4/custom/<Super>KP_Right" = "";
                 "xfwm4/custom/<Super>KP_Next" = "";

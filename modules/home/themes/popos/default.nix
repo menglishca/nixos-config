@@ -126,7 +126,6 @@ in
 
       fira-sans
 
-      rofi
       rofi-power-menu
 
       oranchelo-icon-theme
