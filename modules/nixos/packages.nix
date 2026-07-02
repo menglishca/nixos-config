@@ -20,7 +20,6 @@
     temurin-bin-21
     tmux
     vlc
-    zoom-us
   ];
 
   virtualisation.virtualbox.host = {

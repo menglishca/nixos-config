@@ -59,6 +59,5 @@ let
         {
             home.stateVersion = "25.11";
             programs.home-manager.enable = true;
-            gtk.gtk4.theme = config.gtk.theme;
             _module.args.mkDotfiles = mkDotfiles;
         }

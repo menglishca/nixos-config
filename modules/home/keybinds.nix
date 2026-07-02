@@ -24,8 +24,7 @@
                 "general/box_move" = true;
             };
             "xfce4-keyboard-shortcuts" = {
-                # App launcher (Rofi)
-                "xfwm4/custom/<Control>space" = "${config.home.homeDirectory}/.config/rofi/bin/rofi-desktop.sh drun";
+                "commands/custom/<Control>space" = "${config.home.homeDirectory}/.config/rofi/bin/rofi-desktop.sh drun";
                 "xfwm4/custom/<Super>KP_Down" = "";
                 "xfwm4/custom/<Super>KP_Right" = "";
                 "xfwm4/custom/<Super>KP_Next" = "";
