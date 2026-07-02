@@ -23,5 +23,9 @@
     package = rofi-suite.packages.${pkgs.stdenv.hostPlatform.system}.default;
     themeType = "rounded";
     useStylixColors = true;
+
+    desktopThemes = {
+      drun.type = "iconic";
+    };
   };
 }
