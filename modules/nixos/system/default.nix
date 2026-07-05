@@ -3,7 +3,7 @@
 {
   # System-level defaults that are not specific to one desktop environment.
   imports = [
-    ./env.nix
+    ./env
     ./ssh.nix
     ./users.nix
   ];

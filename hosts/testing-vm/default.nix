@@ -13,6 +13,7 @@
     ../../modules/nixos/desktop/default.nix
     ../../modules/nixos/stylix.nix
     ../../modules/nixos/boot/grub.nix
+    ../../modules/nixos/system/env/desktop.nix
   ];
 
   networking.hostName = "testing-vm";
