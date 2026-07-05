@@ -7,17 +7,11 @@
     ../../modules/nixos/vps-packages.nix
     ../../modules/nixos/services/postgres.nix
     ../../modules/nixos/services/librechat.nix
-    ../../modules/nixos/system/ssh-vps.nix
+    ../../modules/nixos/services/ssh/server.nix
     ../../modules/nixos/system/env/server.nix
   ];
 
   networking.hostName = "menglishca";
-
-  # SSH key-based auth -- disables password login for security.
-  services.openssh.settings = {
-    PermitRootLogin = "no";
-    PasswordAuthentication = false;
-  };
 
   users.users.matthew = {
     openssh.authorizedKeys.keys = [

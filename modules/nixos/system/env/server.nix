@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Server-specific environment variables.
+  imports = [
+    ./default.nix
+  ];
+
+  
   environment.variables = {
+    
   };
 }

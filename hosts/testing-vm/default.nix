@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/base.nix
     ../../modules/nixos/packages.nix
+    ../../modules/nixos/services/ssh/desktop.nix
     ../../modules/nixos/desktop/default.nix
     ../../modules/nixos/stylix.nix
     ../../modules/nixos/boot/grub.nix
